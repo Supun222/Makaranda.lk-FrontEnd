@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "asdasd";
+    src: url("../../Assets/Fonts/Montserrat/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("../../Assets/Fonts/Lato/Lato-Regular.ttf");
+    font-weight: bold;
+}
