@@ -6,14 +6,15 @@ import WeddingPacks from "../../Assets/Icons/WeddingPacks.png";
 import PlusIcon from "../../Assets/Icons/Svgs/Plus";
 import ExploreIcon from "../../Assets/Icons/Svgs/Explore";
 import QuickLinks from "../../Components/QuixkLinks";
+import Footer from "../../Lib/Footer/index";
 
 function Home() {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <div>
+    <main>
       <MainHeader />
       <div className="container mx-auto">
-        <div className="ml-5 md:ml-15 lg:ml-10 xl:ml-40">
+        <div className="ml-5 md:ml-15 lg:ml-20 xl:ml-40">
           <h3 className="font-Lato font-semibold text-primaryText tracking-wide">
             Browser Item by Cateogry
           </h3>
@@ -75,13 +76,14 @@ function Home() {
           </div>
         </div>
         <div className="">
-          <h3 className="font-Lato font-semibold text-primaryText tracking-wide ml-5 md:ml-15 lg:ml-10 xl:ml-40 mt-10">
+          <h3 className="font-Lato font-semibold text-primaryText tracking-wide ml-5 md:ml-15 lg:ml-20 xl:ml-40 mt-10">
             Quik Links
           </h3>
           <QuickLinks />
         </div>
       </div>
-    </div>
+      <Footer />
+    </main>
   );
 }
 

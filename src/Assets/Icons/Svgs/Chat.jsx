@@ -2,7 +2,7 @@ function ChatIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-10 fill-white"
+      className="h-6 md:h-10 fill-white"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

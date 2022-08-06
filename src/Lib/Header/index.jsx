@@ -9,26 +9,30 @@ function MainHeader() {
   return (
     <main className="bg-gradient-to-b from-tertary h-60">
       <div className="container mx-auto">
-        <div className="flex flex-row md:ml-8 md:mr-8 justify-between">
-          <div className="flex flex-row mt-5 items-center mx-auto md:mx-0">
-            <img src={Makarandalogo} alt="Makaranda.lk" className="w-14" />
+        <div className="flex flex-row ml-2 mr-2 md:ml-3 md:mr-3 lg:ml-5 justify-between items-center">
+          <div className="flex flex-row mt-5 items-center md:mx-0 justify-start">
+            <img
+              src={Makarandalogo}
+              alt="Makaranda.lk"
+              className="w-8 md:w-14"
+            />
             <h1 className="font-Lato font-medium text-primary ml-3">
               Makaranda.lk
             </h1>
-            <div className="flex flex-row items-center">
-              <p className="ml-5 pt-1/2 pb-1/2 pl-2 pr-3 border rounded-sm border-primary text-primary font-Lato">
+            <div className="hidden flex-row md:flex items-center">
+              <p className="ml-5 pt-1/2 pb-1/2 pl-2 pr-3 border rounded-sm border-primary text-primary font-Lato text-xs">
                 Sinhala
               </p>
-              <p className="pt-1/2 pb-1/2 pl-2 pr-3 border rounded-sm border-primary text-primary font-Lato">
+              <p className="pt-1/2 pb-1/2 pl-2 pr-3 border rounded-sm border-primary text-primary font-Lato text-xs">
                 Tamil
               </p>
             </div>
           </div>
-          <div className="hidden md:flex md:flex-row md:mt-5 items-center">
+          <div className="flex flex-row mt-5 items-center">
             <a href="/login">
-              <div className="flex flex-row items-center ml-5">
+              <div className="flex flex-row items-center ml-5 mr-2">
                 <ChatIcon />
-                <p className="font-Lato ml-3 mr-8 text-primary font-medium">
+                <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
                   Chat
                 </p>
               </div>
@@ -36,7 +40,9 @@ function MainHeader() {
             <a href="/chat">
               <div className="flex flex-row items-center">
                 <UserIcon />
-                <p className="font-Lato ml-3 text-primary font-medium">Login</p>
+                <p className="font-Lato ml-3 text-primary font-medium hidden md:block">
+                  Login
+                </p>
               </div>
             </a>
           </div>
