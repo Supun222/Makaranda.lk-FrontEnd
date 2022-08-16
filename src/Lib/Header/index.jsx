@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../Utils/Abstract/Typography.scss";
 import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
@@ -29,22 +30,22 @@ function MainHeader() {
             </div>
           </div>
           <div className="flex flex-row mt-5 items-center">
-            <a href="/login">
+            <Link to="/chat">
               <div className="flex flex-row items-center ml-5 mr-2">
                 <ChatIcon />
                 <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
                   Chat
                 </p>
               </div>
-            </a>
-            <a href="/chat">
+            </Link>
+            <Link to="/login">
               <div className="flex flex-row items-center">
                 <UserIcon />
                 <p className="font-Lato ml-3 text-primary font-medium hidden md:block">
                   Login
                 </p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex justify-center mt-5 md:mt-3">
@@ -63,9 +64,12 @@ function MainHeader() {
             <input
               type="text"
               placeholder="What are you looking for ?"
-              className="font-Lato tracking-wide w-80 ml-4 placeholder-gray-500 border border-white focus:outline-none text-gray-600"
+              className="font-Lato tracking-wide w-60 md:w-80  ml-4 placeholder-gray-500 border border-white focus:outline-none text-gray-600"
             />
-            <button type="button" className="rounded-full bg-primary p-2">
+            <button
+              type="button"
+              className="rounded-full bg-primary w-8 h-8 mr-1 hover:bg-amber-600"
+            >
               <SearchIcon />
             </button>
           </div>

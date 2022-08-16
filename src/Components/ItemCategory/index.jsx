@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import WeddingPlanners from "../../Assets/Icons/Weddingsplanners.png";
 import WeddingRing from "../../Assets/Icons/WeddingRing.png";
 import DancingGroups from "../../Assets/Icons/DancingGroups.png";
@@ -55,7 +56,11 @@ function BrowserItemsByCategory() {
   return (
     <div className="grid gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-4 md:ml-0 lg:ml-6 xl:ml-4 xl:w-11/12 h-96 overflow-y-auto md:h-auto md:overflow-y-clip mt-5">
       {ItemsCategory.map((item) => (
-        <div key={item.id} className="flex flex-row items-center mt-5 ml-1 ">
+        <Link
+          to="/timeline"
+          key={item.id}
+          className="flex flex-row items-center mt-5 ml-1 w-fit"
+        >
           <img src={item.categoryIcon} alt="itemcategory" className="w-20" />
           <div className="flex flex-col ml-2 justify-start">
             <h5 className="font-Lato max-w-[12rem] text-secondaryText">
@@ -67,7 +72,7 @@ function BrowserItemsByCategory() {
               {item.AdsAmount}
             </p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

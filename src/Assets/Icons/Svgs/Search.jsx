@@ -2,7 +2,7 @@ function LocationIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-gray-600"
+      className="h-5 w-5 ml-[0.3rem] text-gray-600 "
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
