@@ -1,0 +1,23 @@
+body {
+    background-color: var(body-color) !important;
+}
+
+
+// custom span and collaps styles start here 
+details > summary {
+  list-style: none;
+}
+
+details > summary::marker, /* Latest Chrome, Edge, Firefox */ 
+details > summary::-webkit-details-marker /* Safari */ {
+  display: none;
+}
+
+// custom chek boxes styles start here 
+// input[type=checkbox] {
+// 	-moz-appearance:none;
+// 	-webkit-appearance:none;
+// 	-o-appearance:none;
+// 	outline: none;
+// 	content: none;	
+// }

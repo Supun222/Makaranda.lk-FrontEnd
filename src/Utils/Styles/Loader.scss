@@ -1,0 +1,40 @@
+.loaderWrapper {
+    background: radial-gradient(circle at 50%, 50%, rgb(180, 28, 28), #111, #686868);
+}
+
+.content {
+    width: 80vmin;
+    height: 80vmin;
+    position: relative;
+    animation: spin 5s linear 0s infinite;
+    background-color: #111;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.top-left {
+    left: 11vmin;
+    top: 2vmin;
+}
+
+.left-bot {
+    bottom: 11vmin;
+    left: 2vmin;
+    transform: rotate(-90deg);
+}
+
+.bot-right {
+    right: 11vmin;
+    bottom: 2vmin;
+    transform: rotate(-180deg); 
+}
+
+.right-top{
+    top: 11vmin;
+    right: 2vmn;
+    transform: rotate(-270deg);
+}
