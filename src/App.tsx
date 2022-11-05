@@ -3,6 +3,7 @@ import Home from "./Pages/Home/index";
 import Timeline from "./Pages/Timeline";
 import Login from "./Pages/Login/index";
 import SignUp from "./Pages/SignUp";
+import AdminLogin from "./Pages/Admin/Login/index";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account/new/service" element={<SignUp />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
       </Routes>
     </Router>
   );
