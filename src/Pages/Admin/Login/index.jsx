@@ -1,23 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../../axios/index";
 import MakarandaLogo from "../../../Assets/Icons/Makaranda.lk.png";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
-  const [response, setResponse] = useState();
 
-  async function onSubmit() {
-    const request = { email, password };
-    await axios
-      .post("http://localhost:8080/api/user/login", {
-        email: request.email,
-        password: request.password,
-      })
-      .then(setResponse({ token: response.token }))
-      .catch((err) => console.log(err));
-    console.log(response);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // eslint-disable-next-line no-console
+      const response = await axios.post(
+        "/user/login",
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      // eslint-disable-next-line no-console
+      console.log(JSON.stringify(response?.data));
+      // eslint-disable-next-line no-console
+      console.log("you are logged in");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -29,7 +37,7 @@ function AdminLogin() {
           </h3>
         </div>
         <div className="w-full">
-          <form onSubmit={onSubmit} className="mt-5">
+          <form onSubmit={handleSubmit} className="mt-5">
             <div className="flex flex-col justify-center">
               <label htmlFor="email" className="font-Lato tracking-wide">
                 Email
