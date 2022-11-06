@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "../../../axios/index";
+import "react-toastify/dist/ReactToastify.css";
 import MakarandaLogo from "../../../Assets/Icons/Makaranda.lk.png";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
-
+  let response;
+  // toast.configure();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // eslint-disable-next-line no-console
-      const response = await axios.post(
+      response = await axios.post(
         "/user/login",
         JSON.stringify({ email, password }),
         {
@@ -19,11 +22,22 @@ function AdminLogin() {
         }
       );
       // eslint-disable-next-line no-console
-      console.log(JSON.stringify(response?.data));
-      // eslint-disable-next-line no-console
-      console.log("you are logged in");
-    } catch (error) {
-      console.log(error);
+      console.log(JSON.stringify(response?.data.token));
+      //  faire based fire stroe
+      toast.success("Successfully logged in");
+    } catch (err) {
+      // console.log(JSON.stringify(err.response?.data.errors));
+      if (!err.response) {
+        toast.error("Something went wronggg");
+      } else if (err.response?.status === 404) {
+        toast.error(err.response?.data.errors);
+      } else if (err.response?.status === 400) {
+        toast.error(err.response?.data.errors);
+      } else if (err.response?.status === 500) {
+        toast.error(err.response?.data.errors);
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   };
 
@@ -71,6 +85,7 @@ function AdminLogin() {
             </button>
           </form>
         </div>
+        <ToastContainer />;
       </div>
     </div>
   );
