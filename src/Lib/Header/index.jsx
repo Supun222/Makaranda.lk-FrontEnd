@@ -40,7 +40,7 @@ function MainHeader() {
             </Link>
             <Link to="/login">
               <div className="flex flex-row items-center">
-                <UserIcon />
+                <UserIcon classlist="h-6 md:h-9 fill-white" />
                 <p className="font-Lato ml-3 text-primary font-medium hidden md:block">
                   Login
                 </p>
@@ -53,7 +53,7 @@ function MainHeader() {
             type="button"
             className="flex flex-row items-center bg-primary rounded-2xl pl-3 pr-4 pt-1 pb-1"
           >
-            <LocationIcon />
+            <LocationIcon classList="w-5 fill-white" />
             <p className="font-Lato ml-2 text-white font-medium text-">
               All fo Sri Lanka
             </p>

@@ -4,7 +4,7 @@ import Timeline from "./Pages/Timeline";
 import Login from "./Pages/Login/index";
 import SignUp from "./Pages/SignUp";
 import AdminLogin from "./Pages/Admin/Login/index";
-import Dashboard from "./Components/Dashboard/injext";
+import Dashboard from "./Components/Dashboard";
 import AdminHome from "./Pages/Admin/Home";
 import Membership from "./Components/Membership";
 

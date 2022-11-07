@@ -1,8 +1,9 @@
-function UserIcon() {
+// eslint-disable-next-line react/prop-types
+function UserIcon({ classlist }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 md:h-9 fill-gray-300"
+      className={classlist}
       viewBox="0 0 20 20"
       fill="currentColor"
     >
