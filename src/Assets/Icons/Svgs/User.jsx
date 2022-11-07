@@ -2,7 +2,7 @@ function UserIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 md:h-9 fill-white"
+      className="h-6 md:h-9 fill-gray-300"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

@@ -4,6 +4,9 @@ import Timeline from "./Pages/Timeline";
 import Login from "./Pages/Login/index";
 import SignUp from "./Pages/SignUp";
 import AdminLogin from "./Pages/Admin/Login/index";
+import Dashboard from "./Components/Dashboard/injext";
+import AdminHome from "./Pages/Admin/Home";
+import Membership from "./Components/Membership";
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/account/new/service" element={<SignUp />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminHome />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/membership" element={<Membership />} />
+        </Route>
       </Routes>
     </Router>
   );
