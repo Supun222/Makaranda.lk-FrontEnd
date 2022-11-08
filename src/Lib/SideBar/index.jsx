@@ -18,7 +18,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/dashboard"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded w-full"
+            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8"
             onClick={addCurrentTagInditicator}
           >
             <hr className="bg-yellow-50 h-11 w-1" id="dashobard" />
@@ -33,7 +33,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100  rounded w-full"
+            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100  rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <MembershipIcon classList="w-6 fill-black" />
@@ -46,11 +46,11 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded w-full"
+            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
-              <LocationIcon classList="w-6" />
-              <p className="ml-2 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
+              <LocationIcon classList="w-5" />
+              <p className="ml-3 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
                 Location
               </p>
             </div>
@@ -59,7 +59,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded w-full"
+            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <ServiceIcon classList="w-6" />
@@ -74,7 +74,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/login"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded w-full"
+            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8"
           >
             <hr className="bg-yellow-50 h-11 w-1" id="dashobard" />
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
