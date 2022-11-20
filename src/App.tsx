@@ -7,6 +7,7 @@ import AdminLogin from "./Pages/Admin/Login/index";
 import Dashboard from "./Components/Dashboard";
 import AdminHome from "./Pages/Admin/Home";
 import Membership from "./Components/Membership";
+import Profile from "./Pages/Profile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Timeline />} />
+        <Route path="/profile/index=:id" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account/new/service" element={<SignUp />} />
         <Route path="/admin/login" element={<AdminLogin />} />

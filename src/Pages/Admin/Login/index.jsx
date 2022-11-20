@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import axios from "../../../axios/index";
 import "react-toastify/dist/ReactToastify.css";
 import MakarandaLogo from "../../../Assets/Icons/Makaranda.lk.png";
@@ -7,6 +8,7 @@ import MakarandaLogo from "../../../Assets/Icons/Makaranda.lk.png";
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
+  const navigate = useNavigate();
   let response;
   // toast.configure();
   const handleSubmit = async (e) => {
@@ -23,8 +25,8 @@ function AdminLogin() {
       );
       // eslint-disable-next-line no-console
       console.log(JSON.stringify(response?.data.token));
-      //  faire based fire stroe
       toast.success("Successfully logged in");
+      navigate("/admin/dashboard");
     } catch (err) {
       // console.log(JSON.stringify(err.response?.data.errors));
       if (!err.response) {

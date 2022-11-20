@@ -22,7 +22,7 @@ function Membership() {
   return (
     <div className="mx-auto flex flex-col justify-between h-full w-full">
       <Reports />
-      <div className="p-5 bg-white rounded shadow h-full mt-5">
+      <div className="p-5 bg-white rounded shadow h-full overflow-y-auto mt-5">
         <div className="flex flex-row justify-between">
           <h1 className="font-Lato font-semibold text-2xl">
             Membership Details
@@ -78,8 +78,10 @@ function Membership() {
                   </tr>
                 ))
               ) : (
-                <tr className="grid grid-cols-7 items-center p-3 border-b-4 border-b-slate-50">
-                  <td className="text-center col-7">No data</td>
+                <tr className="grid grid-cols-7 items-center p-3 border-b-4 border-slate-50 bg-slate-200 rounded-lg">
+                  <td className="text-center col-span-7 font-Lato font-bold text-gray-900">
+                    No membership available
+                  </td>
                 </tr>
               )}
             </tbody>
