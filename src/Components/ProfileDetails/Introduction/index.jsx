@@ -2,8 +2,10 @@ import React from "react";
 
 function Introduction() {
   return (
-    <div className="bg-gray-100 rounded-md w-96 p-5">
-      <header className="font-Lato font-semibold text-gray-700">Intro</header>
+    <div className="bg-gray-100 rounded-md max-w-96 p-5">
+      <header className="font-Lato font-semibold text-gray-700 text-lg">
+        Intro
+      </header>
       <h3 className="font-Lato font-semibold text-gray-600 text-center">
         Dance Category
       </h3>

@@ -8,7 +8,7 @@ import PackageIcon from "../../Assets/Icons/Svgs/Package";
 
 function ProfileIntro() {
   return (
-    <div>
+    <div className="">
       <Breadcrums />
       <div className="rounded-lg">
         <img
@@ -17,7 +17,7 @@ function ProfileIntro() {
           className="object-none object-center rounded-lg bg-yellow-300 w-full h-[32rem]"
         />
       </div>
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between items-center">
         <div className="flex flex-row items-center p-2">
           <div className="flex flex-row relative w-44 h-10">
             <div className="absolute -bottom-3 left-3 p-1 rounded-full bg-white">
@@ -34,7 +34,13 @@ function ProfileIntro() {
             </h1>
             <div className="flex flex-row items-center">
               <Ratings ClassList="" />
-              <h1 className="text-green-400 ml-4">Premium Membership</h1>
+              <button
+                type="button"
+                className="bg-gray-200 p-0.5 w-20 text-sm text-gray-500 uppercase rounded-md font-Lato font-semibold ml-2 hover:opacity-80"
+              >
+                Rate Us
+              </button>
+              <h1 className="text-green-500 ml-4">Premium Membership</h1>
             </div>
           </div>
         </div>
@@ -50,7 +56,7 @@ function ProfileIntro() {
             type="button"
             className="p-2 bg-blue-500 rounded-md flex flex-row hover:opacity-80 items-center leading-tight"
           >
-            <PackageIcon classList="feather feather-package w-5 fill-white stroke-blue-600 mr-2" />
+            <PackageIcon classList="feather feather-package w-5 fill-white stroke-blue-500 mr-2" />
             <p className="font-Lato text-white">view Packages</p>
           </button>
         </div>
