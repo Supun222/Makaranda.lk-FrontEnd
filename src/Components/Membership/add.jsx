@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import axios from "../../axios/index";
 import AddIcon from "../../Assets/Icons/Svgs/Add";
@@ -11,6 +12,7 @@ function AddMembership() {
   const [name, setName] = useState();
   const [details, setDetails] = useState();
   const [price, setPrice] = useState();
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     membership_name: Yup.string().required("Please enter the username"),
@@ -47,6 +49,7 @@ function AddMembership() {
       );
       toast.success("New membrship had added successfully");
       reset();
+      navigate("/admin/membership");
     } catch (err) {
       console.log(JSON.stringify(err.response?.data.message));
       if (!err.response) {

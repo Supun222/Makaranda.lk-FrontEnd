@@ -29,7 +29,7 @@ function ProfileIntro() {
             </div>
           </div>
           <div className="p-3 flex flex-col">
-            <h1 className="font-Lato text-secondaryText font-semibold">
+            <h1 className="font-Lato text-gray-600 font-semibold text-xl tracking-wide">
               Thathari Dancing Crew
             </h1>
             <div className="flex flex-row items-center">

@@ -7,29 +7,35 @@ function Message() {
         Ask Thathari Dance Crew
       </h3>
       <div className="flex flex-col">
-        <div className="flex flex-row items-center justify-between mt-3">
-          <p>“ Do you have any upcoming events ?”</p>
+        <div className="flex flex-row items-center justify-between mt-2">
+          <p className="font-Lato text-base text-gray-600 font-semibold">
+            “ Do you have any upcoming events ?”
+          </p>
           <button
             type="button"
-            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-2"
+            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-1"
           >
             Send
           </button>
         </div>
         <div className="flex flex-row items-center justify-between mt-3">
-          <p>“ How much does it cost?”</p>
+          <p className="font-Lato text-base text-gray-600 font-semibold">
+            “ How much does it cost?”
+          </p>
           <button
             type="button"
-            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-2"
+            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-1"
           >
             Send
           </button>
         </div>
         <div className="flex flex-row items-center justify-between mt-3">
-          <p>“ Do you have any promotions”</p>
+          <p className="font-Lato text-base text-gray-600 font-semibold">
+            “ Do you have any promotions”
+          </p>
           <button
             type="button"
-            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-2"
+            className="bg-gray-200 p-2 uppercase rounded-md font-Lato font-semibold ml-1"
           >
             Send
           </button>
