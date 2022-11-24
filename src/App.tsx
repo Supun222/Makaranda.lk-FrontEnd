@@ -8,6 +8,7 @@ import Dashboard from "./Components/Dashboard";
 import AdminHome from "./Pages/Admin/Home";
 import Membership from "./Components/Membership";
 import Profile from "./Pages/Profile";
+import Posts from "./Components/Posts";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/timeline" element={<Timeline />} />
+        <Route path="/timeline" element={<Timeline />}>
+          <Route path="/timeline/:category/:location" element={<Posts />} />
+        </Route>
         <Route path="/profile/index=:id" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account/new/service" element={<SignUp />} />

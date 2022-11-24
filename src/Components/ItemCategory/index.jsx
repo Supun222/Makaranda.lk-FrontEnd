@@ -57,7 +57,7 @@ function BrowserItemsByCategory() {
     <div className="grid gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-4 md:ml-0 lg:ml-6 xl:ml-4 xl:w-11/12 h-96 overflow-y-auto md:h-auto md:overflow-y-clip mt-5">
       {ItemsCategory.map((item) => (
         <Link
-          to="/timeline"
+          to="/timeline/dancing/all"
           key={item.id}
           className="flex flex-row items-center mt-5 ml-1 w-fit"
         >
