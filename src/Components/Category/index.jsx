@@ -29,10 +29,13 @@ function Category() {
         {subCategories && subCategories.length > 0 ? (
           subCategories.map((item) => (
             <div
-              className="font-Lato text-lg font-semibold text-primary text-start mt-1"
+              className="font-Lato text-lg font-semibold text-primary text-start"
               key={item}
             >
-              <Link to={`/timeline/dancing/${item}`} className="inline-flex">
+              <Link
+                to={`/timeline/dancing/${item}`}
+                className="inline-flex mt-2"
+              >
                 {item} <p className="text-gray-500 ml-2">(102)</p>
               </Link>
             </div>

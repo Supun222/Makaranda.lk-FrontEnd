@@ -1,30 +1,23 @@
-import { useState } from "react";
-import { useParams } from "react-router";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 // import { Link } from "react-router-dom";
 import axios from "../../axios/index";
-import AddIcon from "../../Assets/Icons/Svgs/Add";
 
-// eslint-disable-next-line react/prop-types, @typescript-eslint/no-unused-vars, no-unused-vars
 function EditMembership() {
-  const membershipId = useParams();
+  const { id } = useParams();
   const [name, setName] = useState();
   const [details, setDetails] = useState();
   const [price, setPrice] = useState();
-
-  axios.get(`admin/membership/id=${membershipId}`).then((response) => {
-    setName(response.data.name);
-    setDetails(response.data.details);
-    setPrice(setPrice);
-  });
-
+  const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     membership_name: Yup.string().required("Please enter the username"),
     membership_details: Yup.string().required("Please enter the password"),
-    membership_price: Yup.number()
+    membership_price: Yup.number(setPrice)
       .typeError("Please provide price")
       .min(500, "Too little")
       .max(20000, "Very costly!"),
@@ -35,14 +28,26 @@ function EditMembership() {
   const { register, handleSubmit, formState, reset } = useForm(formOptions);
   const { errors } = formState;
 
-  const resetFeild = () => {
-    reset();
+  const getMembership = async () => {
+    try {
+      axios.get(`/admin/membership/id=${id}`).then((response) => {
+        setName(response.data.name);
+        setDetails(response.data.details);
+        setPrice(response.data.price);
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
   };
+
+  useEffect(() => {
+    getMembership();
+  }, []);
 
   const onSubmitHandler = async () => {
     try {
       await axios.patch(
-        `/admin/membership/edit/${membershipId}`,
+        `/admin/membership/edit/${id}`,
         JSON.stringify({
           name,
           details,
@@ -54,8 +59,9 @@ function EditMembership() {
           withCredentials: true,
         }
       );
-      toast.success("New membrship had added successfully");
+      toast.success("Membrship edited successfully");
       reset();
+      setTimeout(navigate("/admin/membership"), 5000);
     } catch (err) {
       console.log(JSON.stringify(err.response?.data.message));
       if (!err.response) {
@@ -74,22 +80,7 @@ function EditMembership() {
 
   return (
     <div>
-      <button
-        type="button"
-        className="inline-flex items-center hover:bg-blue-100 p-2 rounded "
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <AddIcon classList="w-5 fill-blue-500 mr-1" />
-        <p className="text-blue-500">Create</p>
-      </button>
-      <div
-        className="modal fade fixed top-40 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="new_membership"
-        aria-hidden="true"
-      >
+      <div className="flex justify-center items-center h-screen w-[120rem]">
         <div className="modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
@@ -97,7 +88,7 @@ function EditMembership() {
                 className="text-xl font-semibold leading-normal text-gray-800"
                 id="new_membership"
               >
-                Add New Membership
+                Edit Existing Membership
               </h5>
               <button
                 type="button"
@@ -169,18 +160,16 @@ function EditMembership() {
                   </p>
                 </div>
                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                  <button
+                  <Link
+                    to="/admin/membership"
                     type="button"
                     className="p-2 pl-6 pr-6 bg-red-500 font-medium text-white leading-tight uppercase rounded hover:bg-red-700 hover:shadow-sm  focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring  active:bg-red-800 active:shadow-sm transition-all duration-1 ease-in-out"
-                    data-bs-dismiss="modal"
-                    onClick={resetFeild}
                   >
                     Close
-                  </button>
+                  </Link>
                   <button
                     type="submit"
                     className="p-2 pl-6 pr-6 bg-blue-600  text-white font-medium leading-tight uppercase rounded shadow-md  hover:bg-blue-700 hover:shadow-lg  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
-                    data-bs-dismiss="modal"
                   >
                     Save changes
                   </button>

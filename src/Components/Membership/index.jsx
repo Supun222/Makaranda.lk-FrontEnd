@@ -1,10 +1,13 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "../../axios/index";
 import Reports from "../Report";
-import EditdIcon from "../../Assets/Icons/Svgs/Edit";
 import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
 import AddMembership from "./add";
 import DownloadIcon from "../../Assets/Icons/Svgs/Download";
+import ResetIcon from "../../Assets/Icons/Svgs/Reset";
+import EditdIcon from "../../Assets/Icons/Svgs/Edit";
 
 function Membership() {
   const [Memberships, setMembership] = useState([]);
@@ -27,7 +30,15 @@ function Membership() {
           <h1 className="font-Lato font-semibold text-2xl">
             Membership Details
           </h1>
-          <div className="inline-flex justify-between w-48 items-center">
+          <div className="inline-flex justify-between items-center">
+            <button
+              type="button"
+              className="inline-flex items-center w-fit hover:bg-gray-200 p-2 rounded mr-4"
+              onClick={renderTableData}
+            >
+              <ResetIcon classList="w-5 fill-black mr-2" />
+              <p>Refresh</p>
+            </button>
             <AddMembership />
             <button
               type="button"
@@ -53,20 +64,30 @@ function Membership() {
               {Memberships && Memberships.length > 0 ? (
                 Memberships.map((item, no) => (
                   <tr
-                    className="grid grid-cols-7 items-center p-3 border-b-4 border-b-slate-50"
+                    className="grid grid-cols-7 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
                     // eslint-disable-next-line no-underscore-dangle
                     key={item._id}
                   >
-                    <td className="text-start">{no + 1}</td>
-                    <td className="text-center">{item.name}</td>
-                    <td className="text-center col-span-3">{item.details}</td>
-                    <td className="text-center">{item.price}</td>
+                    <td className="text-start font-Lato text-base font-semibold text-gray-600">
+                      {no + 1}
+                    </td>
+                    <td className="text-center font-Lato text-base font-semibold text-gray-600">
+                      {item.name}
+                    </td>
+                    <td className="text-center col-span-3 font-Lato text-base font-semibold text-gray-600">
+                      {item.details}
+                    </td>
+                    <td className="text-center font-Lato text-base font-semibold text-gray-600">
+                      {item.price}
+                    </td>
                     <td className="text-center flex flex-row items-center justify-center">
                       <button
                         type="button"
                         className="p-2 bg-white rounded shadow mr-5"
                       >
-                        <EditdIcon classList="fill-green-400 w-5" />
+                        <Link to={`/admin/membership/${item._id}`}>
+                          <EditdIcon classList="fill-green-400 w-5 mr-1" />
+                        </Link>
                       </button>
                       <button
                         type="button"

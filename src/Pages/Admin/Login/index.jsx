@@ -25,8 +25,8 @@ function AdminLogin() {
       );
       // eslint-disable-next-line no-console
       console.log(JSON.stringify(response?.data.token));
+      setTimeout(navigate("/admin/dashboard"), 3000);
       toast.success("Successfully logged in");
-      navigate("/admin/dashboard");
     } catch (err) {
       // console.log(JSON.stringify(err.response?.data.errors));
       if (!err.response) {
@@ -87,7 +87,7 @@ function AdminLogin() {
             </button>
           </form>
         </div>
-        <ToastContainer />;
+        <ToastContainer />
       </div>
     </div>
   );

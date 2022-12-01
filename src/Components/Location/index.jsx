@@ -34,7 +34,7 @@ function Location() {
             >
               <Link
                 to={`/timeline/dancing/${item.location_name}`}
-                className="inline-flex"
+                className="inline-flex mt-2"
               >
                 {item.location_name} <p className="text-gray-500 ml-2">(122)</p>
               </Link>

@@ -49,7 +49,7 @@ function AddMembership() {
       );
       toast.success("New membrship had added successfully");
       reset();
-      navigate("/admin/membership");
+      setTimeout(navigate("/admin/membership"), 5000);
     } catch (err) {
       console.log(JSON.stringify(err.response?.data.message));
       if (!err.response) {
@@ -70,16 +70,16 @@ function AddMembership() {
     <div>
       <button
         type="button"
-        className="inline-flex items-center hover:bg-blue-100 p-2 rounded "
+        className="inline-flex items-center hover:bg-blue-100 p-2 rounded mr-4"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#AddModal"
       >
         <AddIcon classList="w-5 fill-blue-500 mr-1" />
         <p className="text-blue-500">Create</p>
       </button>
       <div
         className="modal fade fixed top-40 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="exampleModal"
+        id="AddModal"
         tabIndex="-1"
         aria-labelledby="new_membership"
         aria-hidden="true"

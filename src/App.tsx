@@ -9,6 +9,7 @@ import AdminHome from "./Pages/Admin/Home";
 import Membership from "./Components/Membership";
 import Profile from "./Pages/Profile";
 import Posts from "./Components/Posts";
+import Edit from "./Components/Membership/edit";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/admin" element={<AdminHome />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/membership" element={<Membership />} />
+          <Route path="/admin/membership/:id" element={<Edit />} />
         </Route>
       </Routes>
     </Router>
