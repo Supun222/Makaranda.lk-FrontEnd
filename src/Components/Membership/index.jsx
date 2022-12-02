@@ -74,7 +74,7 @@ function Membership() {
                     <td className="text-center font-Lato text-base font-semibold text-gray-600">
                       {item.name}
                     </td>
-                    <td className="text-center col-span-3 font-Lato text-base font-semibold text-gray-600">
+                    <td className="text-start col-span-3 font-Lato text-base font-semibold text-gray-600">
                       {item.details}
                     </td>
                     <td className="text-center font-Lato text-base font-semibold text-gray-600">
