@@ -13,15 +13,15 @@ function SideBar() {
   };
 
   return (
-    <nav className="p-3 border-r flex flex-col justify-between">
+    <nav className="p-3 border-r flex flex-col justify-between bg-gray-300">
       <ul className="w-44">
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/dashboard"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 mt-3"
             onClick={addCurrentTagInditicator}
           >
-            <hr className="bg-yellow-50 h-11 w-1" id="dashobard" />
+            <hr className="bg-yellow-50 h-8 w-1 rounded-sm" id="dashobard" />
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <DashboardIcon />
               <p className="ml-1 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
@@ -33,7 +33,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100  rounded-sm w-full h-8 mt-3"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <MembershipIcon classList="w-6 fill-black" />
@@ -46,7 +46,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8 mt-3"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <LocationIcon classList="w-5" />
@@ -59,7 +59,7 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/membership"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8 mt-3"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <ServiceIcon classList="w-6" />
@@ -74,9 +74,8 @@ function SideBar() {
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
             to="/admin/login"
-            className="flex flex-row justify-start bg-yellow-50 focus:bg-yellow-100 hover:bg-yellow-100 rounded-sm w-full h-8"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 "
           >
-            <hr className="bg-yellow-50 h-11 w-1" id="dashobard" />
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">
               <LogOutIcon classList="w-6 fill-black" />
               <p className="ml-2 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">

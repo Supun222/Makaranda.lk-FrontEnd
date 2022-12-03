@@ -3,8 +3,8 @@ import UserIcon from "../../Assets/Icons/Svgs/User";
 
 function AdminHeader() {
   return (
-    <header className="flex flex-row justify-between w-full border-b p-2 bg-yellow-50">
-      <div className="flex flex-row items-center shadow p-3 rounded-md">
+    <header className="flex flex-row justify-between w-full border-b p-2 bg-gray-50">
+      <div className="flex flex-row items-center shadow p-3 rounded-md bg-yellow-50">
         <img src={MakarandaLogo} alt="makaranda.lk" className="w-12" />
         <h3 className="font-Lato font-medium text-secondaryText ml-3">
           Makaranda.lk
