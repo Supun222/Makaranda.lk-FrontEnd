@@ -1,5 +1,6 @@
 import { useEffect, useState, React } from "react";
 // import { createStore } from "redux";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "../../axios/index";
 import Reports from "../Report";
 import DownloadIcon from "../../Assets/Icons/Svgs/Download";
@@ -29,8 +30,14 @@ function Location() {
     console.log(deleteid);
   };
 
-  const deletelocation = () => {
-    console.log(deleteid);
+  const deletelocation = (e) => {
+    e.preventDefault();
+    try {
+      axios.delete(`/location/remove/${deleteid}`);
+      toast.success(`Location ${deleteLoc} has deleted succefully`);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -154,7 +161,7 @@ function Location() {
                   type="button"
                   className="p-2 pl-6 pr-6 bg-red-600  text-white font-medium leading-tight uppercase rounded shadow-md  hover:bg-red-700 hover:shadow-lg  focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                   data-bs-dismiss="modal"
-                  onClick={deletelocation()}
+                  onClick={deletelocation}
                 >
                   Delete
                 </button>
@@ -162,6 +169,7 @@ function Location() {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
