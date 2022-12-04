@@ -7,11 +7,13 @@ import DownloadIcon from "../../Assets/Icons/Svgs/Download";
 import ResetIcon from "../../Assets/Icons/Svgs/Reset";
 import EditdIcon from "../../Assets/Icons/Svgs/Edit";
 import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
+import AddLocation from "../LocationFilter/add";
 
 function Location() {
   const [Locations, setLocation] = useState([]);
   const [deleteid, setDeleteId] = useState();
   const [deleteLoc, setDeleteLoc] = useState();
+  const [changeSet, setChageSet] = useState(false);
 
   const renderTableData = () => {
     axios
@@ -22,7 +24,8 @@ function Location() {
   useEffect(() => {
     console.log("inside");
     renderTableData();
-  }, []);
+    setChageSet(false);
+  }, [changeSet]);
 
   const SetDeleteData = (id, loc) => {
     setDeleteId(id);
@@ -35,6 +38,7 @@ function Location() {
     try {
       axios.delete(`/location/remove/${deleteid}`);
       toast.success(`Location ${deleteLoc} has deleted succefully`);
+      setChageSet(true);
     } catch (err) {
       console.log(err.message);
     }
@@ -50,10 +54,12 @@ function Location() {
             <button
               type="button"
               className="inline-flex items-center w-fit hover:bg-gray-200 p-2 rounded mr-4"
+              onClick={renderTableData}
             >
               <ResetIcon classList="w-5 fill-black mr-2" />
               <p>Refresh</p>
             </button>
+            <AddLocation />
             <button
               type="button"
               className="inline-flex items-center w-fit hover:bg-gray-200 p-2 rounded"
