@@ -1,6 +1,6 @@
 import React from "react";
 import Category from "../Category";
-import Location from "../Location";
+import Location from "../LocationFilter";
 import DancingIcon from "../../Assets/Icons/DancingGroups.png";
 
 function FilterPanel() {

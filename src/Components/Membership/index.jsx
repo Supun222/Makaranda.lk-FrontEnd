@@ -24,7 +24,7 @@ function Membership() {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col justify-between">
+    <div className="mx-auto flex flex-col justify-between h-full w-full">
       <Reports />
       <div className="p-5 bg-white rounded shadow h-full overflow-y-auto mt-5">
         <div className="flex flex-row justify-between">

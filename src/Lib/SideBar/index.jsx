@@ -45,7 +45,7 @@ function SideBar() {
         </li>
         <li className="mt-2 flex flex-row items-center w-full">
           <Link
-            to="/admin/membership"
+            to="/admin/location"
             className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full h-8 mt-3"
           >
             <div className="inline-flex justify-start items-center p-2 ml-1 mt-1 w-full">

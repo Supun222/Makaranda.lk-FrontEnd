@@ -24,13 +24,14 @@ const Image: React.FC<Props> = ({
   className,
   showNumber,
 }) => {
+  console.log(height);
   return showNumber ? (
     <div
       style={{ width, height, padding: 0, position: "relative" }}
       className={className}
     >
       <img
-        className="w-full h-full"
+        className="w-full h-[13.1rem]"
         src={src}
         style={{ ...style, filter: "brightness(28%)" }}
         alt="ajasd"

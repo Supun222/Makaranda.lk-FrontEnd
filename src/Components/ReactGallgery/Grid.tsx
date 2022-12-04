@@ -133,8 +133,9 @@ const Grid: React.FC<Props> = ({ images, height, width, onClick }) => {
             );
           })}
           <Image
-            className="col-span-4 object-cover h-full"
+            className="col-span-4 object-cover h-[20rem]"
             src={images[4].src}
+            height={`${(height / 2) * 1}px`}
             showNumber={images.length - 5}
           />
         </>
