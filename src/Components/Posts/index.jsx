@@ -1,5 +1,5 @@
 // import { Gallery } from "react-grid-gallery";
-// import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import DotsIcon from "../../Assets/Icons/Svgs/Dots";
 import ReactGallery from "../ReactGallgery/ReactGallery";
 import Images from "../../Resources/images.json";
@@ -43,7 +43,12 @@ function Posts() {
             >
               <div className="flex flex-col w-full justify-between">
                 <div className="flex flex-row justify-between items-center w-full">
-                  <div className="flex flex-row">
+                  <div className="flex flex-row items-center mb-3">
+                    <img
+                      src={ProfilePic}
+                      alt="profile"
+                      className="w-12 rounded-full"
+                    />
                     <div className="flex flex-col items-start justify-center ml-2">
                       <h3 className="font-Lato font-semibold text-base text-gray-700">
                         {post.username}

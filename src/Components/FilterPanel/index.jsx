@@ -5,7 +5,7 @@ import DancingIcon from "../../Assets/Icons/DancingGroups.png";
 
 function FilterPanel() {
   return (
-    <div className="border-4 border-gray-100 rounded-lg h-fit flex flex-col justify-start p-3 w-96">
+    <div className="border-4 border-gray-100 rounded-lg h-fit flex flex-col justify-start p-3">
       <div>
         <nav className="rounded-md w-full mb-3">
           <ol className="list-reset flex items-center">
