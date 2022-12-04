@@ -1,15 +1,17 @@
 /* eslint-disable react/function-component-definition */
-import { useState, React } from "react";
+/* eslint-disable import/no-duplicates */
+/* eslint-disable import/order */
+import { useState } from "react";
 import Grid from "./Grid";
 import Modal from "./Modal";
+import React from "react";
 
 interface Props {
   images: { src: string }[];
-  width: number;
+  width: string;
   height: number;
 }
 
-// eslint-disable-next-line react/prop-types
 const ReactGallery: React.FC<Props> = ({ height, images, width }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleClick = () => setIsModalOpen((p) => !p);

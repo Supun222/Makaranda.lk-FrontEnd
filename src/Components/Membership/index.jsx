@@ -17,13 +17,14 @@ function Membership() {
       .get("/admin/membership/all")
       .then((response) => setMembership(response.data.membership));
   };
-
+  console.log("outside");
   useEffect(() => {
+    console.log("inside");
     renderTableData();
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col justify-between h-full w-full">
+    <div className="mx-auto flex flex-col justify-between">
       <Reports />
       <div className="p-5 bg-white rounded shadow h-full overflow-y-auto mt-5">
         <div className="flex flex-row justify-between">

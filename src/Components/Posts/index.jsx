@@ -1,6 +1,8 @@
-import { Gallery } from "react-grid-gallery";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+// import { Gallery } from "react-grid-gallery";
+// import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import DotsIcon from "../../Assets/Icons/Svgs/Dots";
+import ReactGallery from "../ReactGallgery/ReactGallery";
+import Images from "../../Resources/images.json";
 
 function Posts() {
   const posts = [
@@ -10,31 +12,7 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: [
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 1650,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-          alt: "Boats (Jeshu John - designerspics.com)",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 900,
-          height: 1000,
-        },
-      ],
+      images: Images,
     },
     {
       username: "Thaththari Dance Crew",
@@ -42,31 +20,7 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: [
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 1650,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-          alt: "Boats (Jeshu John - designerspics.com)",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 900,
-          height: 1000,
-        },
-      ],
+      images: Images,
     },
     {
       username: "Thaththari Dance Crew",
@@ -74,34 +28,10 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: [
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 1650,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-          alt: "Boats (Jeshu John - designerspics.com)",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-          caption: "After Rain (Jeshu John - designerspics.com)",
-          width: 900,
-          height: 1000,
-        },
-      ],
+      images: Images,
     },
   ];
-
+  console.log(Images);
   return (
     <div className="col-span-3">
       <div className="overflow-y-auto">
@@ -114,11 +44,6 @@ function Posts() {
               <div className="flex flex-col w-full justify-between">
                 <div className="flex flex-row justify-between items-center w-full">
                   <div className="flex flex-row">
-                    <img
-                      src={ProfilePic}
-                      alt=""
-                      className="w-12 h-12 rounded-full "
-                    />
                     <div className="flex flex-col items-start justify-center ml-2">
                       <h3 className="font-Lato font-semibold text-base text-gray-700">
                         {post.username}
@@ -131,8 +56,8 @@ function Posts() {
                   </div>
                 </div>
                 <p className="text-gray-600">{post.caption}</p>
-                <div className="overflow-x-auto">
-                  <Gallery images={post.images} enableImageSelection={false} />
+                <div className="">
+                  <ReactGallery images={Images} width="100" height={600} />
                 </div>
               </div>
             </div>

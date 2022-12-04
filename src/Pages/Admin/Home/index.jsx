@@ -6,11 +6,11 @@ function Home() {
   return (
     <main className="h-screen">
       <AdminHeader />
-      <div className="flex flex-row h-full">
+      <div className="flex flex-row justify-start h-screen">
         <SideBar />
-        <div className="p-5 bg-slate-100 w-full flex items-center">
+        <section className="p-5 bg-slate-100 flex items-center w-full">
           <Outlet />
-        </div>
+        </section>
       </div>
     </main>
   );
