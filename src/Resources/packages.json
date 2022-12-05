@@ -1,0 +1,16 @@
+{
+    "packages": [
+        {
+            "id": "A",
+            "package_name": "gold",
+            "details": "this is Golden Package details",
+            "price": 1500
+        },
+        {
+            "id": "B",
+            "package_name": "silver",
+            "details": "this is Silver Package details",
+            "price": 1300
+        }
+    ]
+}

@@ -4,7 +4,7 @@ import CoverPic from "../../Assets/Images/Profile/cover.jpg";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import Ratings from "../Ratings";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
-import PackageIcon from "../../Assets/Icons/Svgs/Package";
+import Packages from "../Packages";
 
 function ProfileIntro() {
   return (
@@ -52,13 +52,7 @@ function ProfileIntro() {
             <ChatIcon classList="w-5 fill-black mr-2" />
             <p>Message</p>
           </button>
-          <button
-            type="button"
-            className="p-2 bg-blue-500 rounded-md flex flex-row hover:opacity-80 items-center leading-tight"
-          >
-            <PackageIcon classList="feather feather-package w-5 fill-white stroke-blue-500 mr-2" />
-            <p className="font-Lato text-white">view Packages</p>
-          </button>
+          <Packages />
         </div>
       </div>
     </div>

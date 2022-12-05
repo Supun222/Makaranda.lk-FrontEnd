@@ -139,7 +139,7 @@ function Dashboard() {
       <Reports />
       <div className="p-2 bg-white rounded shadow w-full mt-5 flex flex-col">
         <h2 className="font-Lato font-semibold text-3xl text-gray-500 m-4">
-          New Service Providers
+          Monthly New Service Providers
         </h2>
         <Line data={lineData} options={lineOptions} height={110} />
       </div>

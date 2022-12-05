@@ -1,10 +1,11 @@
-// import { Gallery } from "react-grid-gallery";
+import { Link } from "react-router-dom";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import DotsIcon from "../../Assets/Icons/Svgs/Dots";
 import ReactGallery from "../ReactGallgery/ReactGallery";
-import Images from "../../Resources/images.json";
+import ShowPosts from "../../Resources/posts.json";
 
 function Posts() {
+  console.log(ShowPosts);
   const posts = [
     {
       username: "Thaththari Dance Crew",
@@ -12,7 +13,7 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: Images,
+      images: ShowPosts.postOne,
     },
     {
       username: "Thaththari Dance Crew",
@@ -20,7 +21,7 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: Images,
+      images: ShowPosts.postTwo,
     },
     {
       username: "Thaththari Dance Crew",
@@ -28,13 +29,13 @@ function Posts() {
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: Images,
+      images: ShowPosts.postthree,
     },
   ];
-  console.log(Images);
+
   return (
     <div className="col-span-3">
-      <div className="overflow-y-auto">
+      <div className="">
         {posts && posts.length > 0 ? (
           posts.map((post) => (
             <div
@@ -49,12 +50,15 @@ function Posts() {
                       alt="profile"
                       className="w-12 rounded-full"
                     />
-                    <div className="flex flex-col items-start justify-center ml-2">
+                    <Link
+                      to="/profile/index=1"
+                      className="flex flex-col items-start justify-center ml-2"
+                    >
                       <h3 className="font-Lato font-semibold text-base text-gray-700">
                         {post.username}
                       </h3>
                       <p className="text-gray-400 text-sm">{post.poastDate}</p>
-                    </div>
+                    </Link>
                   </div>
                   <div className="bg-slate-200 rounded-full p-1">
                     <DotsIcon classList="w-5" />
@@ -62,7 +66,7 @@ function Posts() {
                 </div>
                 <p className="text-gray-600">{post.caption}</p>
                 <div className="">
-                  <ReactGallery images={Images} width="100" height={600} />
+                  <ReactGallery images={post.images} width="100" height={600} />
                 </div>
               </div>
             </div>
