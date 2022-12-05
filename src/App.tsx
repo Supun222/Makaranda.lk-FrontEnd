@@ -11,6 +11,7 @@ import Profile from "./Pages/Profile";
 import Posts from "./Components/Posts";
 import Edit from "./Components/Membership/edit";
 import Location from "./Components/Location";
+import Categories from "./Components/Categories";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/admin/membership" element={<Membership />} />
           <Route path="/admin/membership/:id" element={<Edit />} />
           <Route path="/admin/location" element={<Location />} />
+          <Route path="/admin/category" element={<Categories />} />
         </Route>
       </Routes>
     </Router>
