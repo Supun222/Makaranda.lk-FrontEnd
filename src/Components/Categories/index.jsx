@@ -28,7 +28,9 @@ function Categories() {
       <Reports />
       <div className="p-5 bg-white rounded shadow h-full overflow-y-auto mt-5">
         <div className="flex flex-row justify-between">
-          <h1 className="font-Lato font-semibold text-2xl">Category Details</h1>
+          <h1 className="font-Lato font-semibold text-3xl text-gray-500 m-4">
+            Category Details
+          </h1>
           <div className="inline-flex justify-between items-center">
             <button
               type="button"

@@ -8,7 +8,9 @@ function Category() {
   const renderCategories = () => {
     axios
       .get("/category/all")
-      .then((response) => setsubCategory(response.data[0].subcategory));
+      .then((response) =>
+        setsubCategory(response.data.Category[0].subcategory)
+      );
   };
 
   console.log(subCategories);
