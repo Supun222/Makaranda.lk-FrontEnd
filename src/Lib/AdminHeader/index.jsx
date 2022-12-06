@@ -17,12 +17,14 @@ function AdminHeader() {
       <h3 className="font-Lato font-semibold text-2xl text-gray-600 ml-3 tracking-widest uppercase">
         Welcome
       </h3>
-      <div className="flex flex-row mt-5 items-center mr-5">
+      <div className="flex flex-row items-center mr-5">
         <div>
           <div>
             {user ? (
               <div className="flex flex-row items-center">
-                <UserIcon classlist="h-6 md:h-9 fill-gray-300" />
+                <p className="p-2 w-12 text-center text-xl font-Lato font-semibold rounded-full text-primary bg-white capitalize">
+                  {user.username.charAt(0)}
+                </p>
                 <p className="font-Lato ml-3 text-gray-500 font-semibold hidden md:block capitalize">
                   {user.username}
                 </p>

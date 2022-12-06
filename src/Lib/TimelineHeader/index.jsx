@@ -54,7 +54,9 @@ function TimelineHeader() {
               <div>
                 {user ? (
                   <div className="flex flex-row items-center">
-                    <UserIcon classlist="h-6 md:h-9 fill-white" />
+                    <p className="p-1 w-10 text-center text-xl font-Lato font-semibold rounded-full text-primary bg-white">
+                      {user.username.charAt(0)}
+                    </p>
                     <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
                       {user.username}
                     </p>
@@ -63,12 +65,12 @@ function TimelineHeader() {
                     </Link>
                   </div>
                 ) : (
-                  <div className="flex flex-row items-center">
+                  <Link to="/login" className="flex flex-row items-center">
                     <UserIcon classlist="h-6 md:h-9 fill-white" />
                     <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
                       Login
                     </p>
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>

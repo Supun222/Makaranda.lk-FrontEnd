@@ -74,6 +74,7 @@ function AdminLogin() {
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="flex flex-col justify-center mt-3 ">
@@ -86,6 +87,7 @@ function AdminLogin() {
                 id="password"
                 placeholder="Password"
                 onChange={(e) => setPassowrd(e.target.value)}
+                required
               />
             </div>
             <button
