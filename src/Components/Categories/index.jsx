@@ -6,6 +6,7 @@ import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
 import DownloadIcon from "../../Assets/Icons/Svgs/Download";
 import ResetIcon from "../../Assets/Icons/Svgs/Reset";
 import EditdIcon from "../../Assets/Icons/Svgs/Edit";
+import AddIcon from "../../Assets/Icons/Svgs/Add";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -35,9 +36,19 @@ function Categories() {
             <button
               type="button"
               className="inline-flex items-center w-fit hover:bg-gray-200 p-2 rounded mr-4"
+              onClick={() => setChageSet(true)}
             >
               <ResetIcon classList="w-5 fill-black mr-2" />
               <p>Refresh</p>
+            </button>
+            <button
+              type="button"
+              className="inline-flex items-center hover:bg-blue-100 p-2 rounded mr-4"
+              data-bs-toggle="modal"
+              data-bs-target="#AddModal"
+            >
+              <AddIcon classList="w-5 fill-blue-500 mr-1" />
+              <p className="text-blue-500">Create</p>
             </button>
             <button
               type="button"

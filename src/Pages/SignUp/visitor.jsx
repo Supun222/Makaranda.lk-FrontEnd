@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import * as Yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "../../axios/index";
 
 function VisitorReg() {
@@ -8,8 +11,26 @@ function VisitorReg() {
   const [confirmPassword, setConfirmPassword] = useState();
   const [username, setUsername] = useState();
 
-  const handleReg = async (e) => {
-    e.preventDefault();
+  const validationSchema = Yup.object().shape({
+    floating_email: Yup.string().email("Invalid email").required("Required"),
+    floating_username: Yup.string()
+      .required("Please enter the username")
+      .min(4, "Too Short!"),
+    floating_password: Yup.string()
+      .required("Password is required")
+      .min(6, "at least 6 digits need for password"),
+    floating_cpassword: Yup.string()
+      .oneOf([Yup.ref("floating_password"), null], "Passwords must match")
+      .required("Confirm password is required"),
+  });
+
+  const formOptions = { resolver: yupResolver(validationSchema) };
+
+  const { register, handleSubmit, formState, reset } = useForm(formOptions);
+  const { errors } = formState;
+
+  const handleReg = async () => {
+    // e.preventDefault();
     console.log(confirmPassword);
     try {
       await axios
@@ -29,6 +50,7 @@ function VisitorReg() {
         )
         .then((res) => console.log(res));
       toast.success("New location had added successfully");
+      reset();
     } catch (err) {
       console.log(JSON.stringify(err.message));
       if (!err.response) {
@@ -47,16 +69,20 @@ function VisitorReg() {
 
   return (
     <div>
-      <form action="" className="mt-4 mx-auto" onSubmit={handleReg}>
+      <form
+        action=""
+        className="mt-4 mx-auto"
+        onSubmit={handleSubmit(handleReg)}
+      >
         <div className="relative z-0 mb-3 w-full group">
           <input
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register("floating_username")}
             type="text"
             name="floating_username"
             id="floating_username"
             className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
-            value={username}
-            required
             onChange={(e) => setUsername(e.target.value)}
           />
           <label
@@ -65,16 +91,19 @@ function VisitorReg() {
           >
             Username
           </label>
+          <p className="text-xs text-red-500 mt-1">
+            {errors.floating_username?.message}
+          </p>
         </div>
         <div className="relative z-0 mb-3 w-full group">
           <input
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register("floating_email")}
             type="email"
             name="floating_email"
             id="floating_email"
             className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
-            value={email}
-            required
             onChange={(e) => setEmail(e.target.value)}
           />
           <label
@@ -83,16 +112,20 @@ function VisitorReg() {
           >
             Email address
           </label>
+          <p className="text-xs text-red-500 mt-1">
+            {errors.floating_email?.message}
+          </p>
         </div>
         <div className="relative z-0 mb-3 w-full group">
           <input
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register("floating_password")}
             type="password"
             name="floating_password"
             id="floating_password"
             className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
           <label
             htmlFor="floating_password"
@@ -100,16 +133,20 @@ function VisitorReg() {
           >
             Password
           </label>
+          <p className="text-xs text-red-500 mt-1">
+            {errors.floating_password?.message}
+          </p>
         </div>
         <div className="relative z-0 mb-3 w-full group">
           <input
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register("floating_cpassword")}
             type="password"
             name="floating_cpassword"
             id="floating_cpassword"
             className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
           />
           <label
             htmlFor="floating_cpassword"
@@ -117,6 +154,9 @@ function VisitorReg() {
           >
             Confirm Password
           </label>
+          <p className="text-xs text-red-500 mt-1">
+            {errors.floating_cpassword?.message}
+          </p>
         </div>
         {/* <div className="mt-3">
           <div className="flex justify-center">
