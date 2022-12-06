@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "../../../axios/index";
 import "react-toastify/dist/ReactToastify.css";
 import MakarandaLogo from "../../../Assets/Icons/Makaranda.lk.png";
+import { login } from "../../../Features/userSlice";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let response;
   // toast.configure();
   const handleSubmit = async (e) => {
@@ -23,8 +26,14 @@ function AdminLogin() {
           withCredentials: true,
         }
       );
-      // eslint-disable-next-line no-console
-      console.log(JSON.stringify(response?.data.token));
+      dispatch(
+        login({
+          username: response.data.username,
+          token: response.data.token,
+          role: response.data.role,
+          loggedIn: true,
+        })
+      );
       setTimeout(navigate("/admin/dashboard"), 3000);
       toast.success("Successfully logged in");
     } catch (err) {

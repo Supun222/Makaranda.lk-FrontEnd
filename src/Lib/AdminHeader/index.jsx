@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import MakarandaLogo from "../../Assets/Icons/Makaranda.lk.png";
 import UserIcon from "../../Assets/Icons/Svgs/User";
+import { selectUser } from "../../Features/userSlice";
 
 function AdminHeader() {
+  const user = useSelector(selectUser);
+
   return (
     <header className="flex flex-row justify-between items-center w-full border-b p-2 bg-gray-50">
       <div className="flex flex-row items-center shadow p-3 rounded-md bg-yellow-50">
@@ -13,9 +17,25 @@ function AdminHeader() {
       <h3 className="font-Lato font-semibold text-2xl text-gray-600 ml-3 tracking-widest uppercase">
         Welcome
       </h3>
-      <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center rounded-full bg-slate-100 p-3  mr-10 ">
-          <UserIcon classlist="w-8 fill-slate-300" />
+      <div className="flex flex-row mt-5 items-center mr-5">
+        <div>
+          <div>
+            {user ? (
+              <div className="flex flex-row items-center">
+                <UserIcon classlist="h-6 md:h-9 fill-gray-300" />
+                <p className="font-Lato ml-3 text-gray-500 font-semibold hidden md:block capitalize">
+                  {user.username}
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-row items-center">
+                <UserIcon classlist="h-6 md:h-9 fill-gray-300" />
+                <p className="font-Lato ml-3 text-gray-500 font-semibold hidden md:block capitalize">
+                  Login
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

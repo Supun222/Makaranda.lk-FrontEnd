@@ -1,16 +1,29 @@
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, selectUser } from "../../Features/userSlice";
 import "../../Utils/Abstract/Typography.scss";
 import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 import UserIcon from "../../Assets/Icons/Svgs/User";
 import banner from "../../Assets/Images/banner.png";
+import LogOutIcon from "../../Assets/Icons/Svgs/LogOut";
 
 function TimelineHeader() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  const logOut = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
   return (
     <main className="bg-gradient-to-b from-tertary h-60">
       <div className="container mx-auto">
         <div className="flex flex-row ml-2 mr-2 md:ml-3 md:mr-3 lg:ml-5 justify-between items-center">
-          <div className="flex flex-row mt-5 items-center md:mx-0 justify-start">
+          <Link
+            to="/"
+            className="flex flex-row mt-5 items-center md:mx-0 justify-start"
+          >
             <img
               src={Makarandalogo}
               alt="Makaranda.lk"
@@ -27,7 +40,7 @@ function TimelineHeader() {
                 Tamil
               </p>
             </div>
-          </div>
+          </Link>
           <div className="flex flex-row mt-5 items-center">
             <Link to="/chat">
               <div className="flex flex-row items-center ml-5 mr-2">
@@ -37,14 +50,28 @@ function TimelineHeader() {
                 </p>
               </div>
             </Link>
-            <Link to="/login">
-              <div className="flex flex-row items-center">
-                <UserIcon classlist="h-6 md:h-9 fill-white" />
-                <p className="font-Lato ml-3 text-primary font-medium hidden md:block">
-                  Login
-                </p>
+            <div>
+              <div>
+                {user ? (
+                  <div className="flex flex-row items-center">
+                    <UserIcon classlist="h-6 md:h-9 fill-white" />
+                    <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
+                      {user.username}
+                    </p>
+                    <Link to="/login" onClick={() => logOut()}>
+                      <LogOutIcon classList="w-8 fill-gray-50 ml-5" />
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="flex flex-row items-center">
+                    <UserIcon classlist="h-6 md:h-9 fill-white" />
+                    <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
+                      Login
+                    </p>
+                  </div>
+                )}
               </div>
-            </Link>
+            </div>
           </div>
         </div>
         <div className="mt-5 flex justify-center">

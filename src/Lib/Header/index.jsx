@@ -52,7 +52,7 @@ function MainHeader() {
                 </p>
               </div>
             </Link>
-            <Link to="/login">
+            <div>
               <div>
                 {user ? (
                   <div className="flex flex-row items-center">
@@ -60,9 +60,9 @@ function MainHeader() {
                     <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
                       {user.username}
                     </p>
-                    <button type="button" onClick={() => logOut()}>
+                    <Link to="/login" onClick={() => logOut()}>
                       <LogOutIcon classList="w-8 fill-gray-50 ml-5" />
-                    </button>
+                    </Link>
                   </div>
                 ) : (
                   <div className="flex flex-row items-center">
@@ -73,7 +73,7 @@ function MainHeader() {
                   </div>
                 )}
               </div>
-            </Link>
+            </div>
           </div>
         </div>
         <div className="flex justify-center mt-5 md:mt-3">

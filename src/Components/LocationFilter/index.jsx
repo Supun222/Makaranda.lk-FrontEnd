@@ -29,7 +29,7 @@ function Location() {
         {Locations && Locations.length > 0 ? (
           Locations.map((item) => (
             <div
-              className="font-Lato text-lg font-semibold text-primary text-start mt-1"
+              className="font-Lato text-lg font-semibold text-primary text-start mt-1 capitalize"
               key={item.location_name}
             >
               <Link
