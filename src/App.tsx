@@ -12,6 +12,8 @@ import Posts from "./Components/Posts";
 import Edit from "./Components/Membership/edit";
 import Location from "./Components/Location";
 import Categories from "./Components/Categories";
+import VisitorReg from "./Pages/SignUp/visitor";
+import ServiceProviderReg from "./Pages/SignUp/ServiceProvider";
 
 function App() {
   return (
@@ -24,7 +26,10 @@ function App() {
         </Route>
         <Route path="/profile/index=:id" element={<Profile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/account/new/service" element={<SignUp />} />
+        <Route path="/user" element={<SignUp />}>
+          <Route path="/user/visitor/new" element={<VisitorReg />} />
+          <Route path="/user/Service/new" element={<ServiceProviderReg />} />
+        </Route>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminHome />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "../../axios/index";
-
 import MakarandaLogo from "../../Assets/Icons/Makaranda.lk.png";
 import slide1 from "../../Assets/Images/loginOnboard/slide1.png";
 import { login } from "../../Features/userSlice";
@@ -61,12 +60,15 @@ function Login() {
       <div className="flex justify-center items-center h-screen bg-quatery p-5">
         <div className="bg-white flex flex-row justify-center items-center rounded-md shadow-xl p-8">
           <div className="h-full w-full flex flex-col items-start ">
-            <div className="flex flex-row justify-center w-full items-center mt-8">
+            <Link
+              to="/"
+              className="flex flex-row justify-center w-full items-center mt-2"
+            >
               <img src={MakarandaLogo} alt="makaranda" className="w-12" />
               <h3 className="font-Lato font-medium text-secondaryText ml-3">
                 Makaranda.lk
               </h3>
-            </div>
+            </Link>
             <div className="mx-auto m-5">
               <h4 className="font-Lato font-semibold text-xl text-primary tracking-wider">
                 Login
@@ -133,7 +135,7 @@ function Login() {
                   Don&apos;t you have an account ?
                 </p>
                 <Link
-                  to="/account/new/service"
+                  to="/user/visitor/new"
                   className=" text-blue-400 text-xs font-Lato font-semibold tracking-wider ml-1"
                 >
                   Sign Up
