@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../Utils/Abstract/Typography.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Features/userSlice";
 import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 import UserIcon from "../../Assets/Icons/Svgs/User";
@@ -7,6 +9,8 @@ import LocationIcon from "../../Assets/Icons/Svgs/Location";
 import SearchIcon from "../../Assets/Icons/Svgs/Search";
 
 function MainHeader() {
+  const user = useSelector(selectUser);
+
   return (
     <main className="bg-gradient-to-b from-tertary h-60">
       <div className="container mx-auto">
@@ -41,8 +45,8 @@ function MainHeader() {
             <Link to="/login">
               <div className="flex flex-row items-center">
                 <UserIcon classlist="h-6 md:h-9 fill-white" />
-                <p className="font-Lato ml-3 text-primary font-medium hidden md:block">
-                  Login
+                <p className="font-Lato ml-3 text-primary font-medium hidden md:block capitalize">
+                  {user ? user.username : "Login"}
                 </p>
               </div>
             </Link>
