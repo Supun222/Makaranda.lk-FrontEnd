@@ -12,7 +12,9 @@ function VisitorReg() {
   const [username, setUsername] = useState();
 
   const validationSchema = Yup.object().shape({
-    floating_email: Yup.string().email("Invalid email").required("Required"),
+    floating_email: Yup.string()
+      .email("Invalid email")
+      .required("Please enter the email"),
     floating_username: Yup.string()
       .required("Please enter the username")
       .min(4, "Too Short!"),

@@ -14,6 +14,8 @@ import Location from "./Components/Location";
 import Categories from "./Components/Categories";
 import VisitorReg from "./Pages/SignUp/visitor";
 import ServiceProviderReg from "./Pages/SignUp/ServiceProvider";
+import WeddingPackages from "./Pages/WeddingPackages";
+import FilterPackages from "./Components/FilterPackages";
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
           <Route path="/admin/membership/:id" element={<Edit />} />
           <Route path="/admin/location" element={<Location />} />
           <Route path="/admin/category" element={<Categories />} />
+        </Route>
+        <Route path="/package_bundle" element={<WeddingPackages />}>
+          <Route
+            path="/package_bundle/:serviceType"
+            element={<FilterPackages />}
+          />
         </Route>
       </Routes>
     </Router>

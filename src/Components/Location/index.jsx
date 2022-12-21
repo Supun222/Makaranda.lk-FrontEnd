@@ -35,7 +35,7 @@ function Location() {
   const SetDeleteData = (id, loc) => {
     setDeleteId(id);
     setDeleteLoc(loc);
-    console.log(deleteid);
+    toast.dismiss();
   };
 
   const SetEditData = (id, locname, lattitude, longtude) => {
@@ -43,6 +43,7 @@ function Location() {
     setEditLoc(locname);
     setEditLat(lattitude);
     setEditLong(longtude);
+    toast.dismiss();
   };
 
   const deletelocation = (e) => {
