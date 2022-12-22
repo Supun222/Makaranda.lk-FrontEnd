@@ -4,7 +4,7 @@ import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 
 function Footer() {
   return (
-    <div className="border-t-2 border-primary mt-20">
+    <div className="border-t-2 border-primary mt-20 flex-1 w-full">
       <div className="hidden md:flex md:flex-row container mx-auto border-b-2 border-primary  justify-between pb-3 w-2/3">
         <div className="flex flex-col m-3">
           <div>

@@ -23,7 +23,8 @@ function MainCategory() {
       <ul>
         {mainCategory && mainCategory.length > 0 ? (
           mainCategory.map((item) => (
-            <li className="mb-1">
+            // eslint-disable-next-line no-underscore-dangle
+            <li className="mb-1" key={item._id}>
               <Link
                 to={`/package_bundle/${item.category_name}`}
                 className="font-Lato text-primary capitalize underline"
@@ -33,7 +34,7 @@ function MainCategory() {
             </li>
           ))
         ) : (
-          <div>
+          <div className="flex justify-center items-center w-full bg-slate-50 rounded-md">
             <h2 className="text-secondaryText font-Lato font-semibold">
               No items available
             </h2>

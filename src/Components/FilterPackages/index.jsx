@@ -1,47 +1,72 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FilterIcon from "../../Assets/Icons/Svgs/Filter";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
-import Ratings from "../Ratings";
 import axios from "../../axios";
+import FilterData from "../FilterData";
 
 function FilterPackages() {
-  const [minprice, setMinPrice] = useState();
-  const [maxprice, setMaxPrice] = useState();
-  const [currentPrice, setCurrentPrice] = useState(80);
+  const [minprice, setMinPrice] = useState(0);
+  const [maxprice, setMaxPrice] = useState(30000);
+  const [currentPrice, setCurrentPrice] = useState(maxprice);
   const { serviceType } = useParams();
-  const [currentType, setCurrentType] = useState(serviceType);
-  // interface package {
-  //   profile_id: string;
-  //   profile_name: string;
-  //   package_name: string;
-  //   package_details: string;
-  //   price: number;
-  // }
-
+  const [changeset, SetChangeSet] = useState(false);
   const [data, setData] = useState();
   // const [packs, setPacks] = useState([]);
+  // eslint-disable-next-line prefer-const
+  const [AvailablePackages, seAvailablePackagest] = useState([]);
 
   const getPacks = async () => {
-    axios
-      .get(`/user/package/service_type=${currentType}`)
-      .then((res) => setData(res.data));
+    setMinPrice(0);
+    setMaxPrice(30000);
+    await axios.get(`/user/package/service_type=${serviceType}`).then((res) => {
+      // console.log(res.data);
+      setData(res.data);
+    });
+    // console.log(data);
+    SetChangeSet(!changeset);
   };
 
   function gettingdata() {
-    data.map((item) => console.log(item.packages));
+    if (data && data.length > 0) {
+      data.map((item) =>
+        // eslint-disable-next-line array-callback-return
+        item.packages.map((pak, no) => {
+          if (pak.price >= minprice && pak.price <= currentPrice) {
+            // eslint-disable-next-line prefer-const
+            let tempPack = {
+              // eslint-disable-next-line no-underscore-dangle
+              profile_id: item._id + no,
+              profile_name: item.username,
+              package_name: pak.package_name,
+              package_details: pak.details,
+              price: pak.price,
+            };
+            seAvailablePackagest((AvailablePackage) => [
+              ...AvailablePackage,
+              tempPack,
+            ]);
+          }
+        })
+      );
+      // console.log(data);
+    } else {
+      console.log(typeof data);
+    }
   }
 
   useEffect(() => {
-    setMinPrice(0);
-    setMaxPrice(10000);
-    setCurrentType(serviceType);
     getPacks();
+  }, [serviceType]);
+
+  useEffect(() => {
+    seAvailablePackagest([]);
+    // getPacks();
     gettingdata();
-  }, []);
+    // console.log(AvailablePackages);
+  }, [changeset, currentPrice]);
 
   return (
-    <div className="col-span-6 bg-white border border-gray-300 p-3 rounded-md">
+    <div className="col-span-6 bg-white border border-gray-300 p-3 rounded-md min-h-96 overflow-y-auto">
       <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3">
         Wedding / Party Packs
       </h2>
@@ -75,63 +100,12 @@ function FilterPackages() {
               max={maxprice}
               value={currentPrice}
               onChange={(e) => setCurrentPrice(e.target.value)}
-              className=""
+              className="w-36"
             />
           </div>
         </div>
       </div>
-      <div className="flex flex-col mt-5">
-        <div className="bg-slate-100 rounded-md w-full p-3">
-          <header className="flex flex-row border-b-4 border-b-slate-300 pb-2 justify-between">
-            <div className="flex flex-row items-center">
-              <img
-                src={ProfilePic}
-                alt="profile"
-                className="w-10 rounded-full"
-              />
-              <p className="font-Lato text-gray-600 font-semibold text-lg tracking-wide ml-2">
-                Thathari Dance
-              </p>
-            </div>
-            <Ratings />
-          </header>
-          <div className="flex flex-col justify-center">
-            <div className="flex flex-row justify-between mt-2">
-              <div className="flex flex-row items-center">
-                <h4 className="capitalize font-Lato text-gray-500">
-                  package :{" "}
-                </h4>
-                <p className="capitalize font-Lato text-yellow-400 ml-2">
-                  Golden Package
-                </p>
-              </div>
-              <div className="flex flex-row items-center">
-                <h4 className="capitalize font-Lato text-gray-500 mr-2">
-                  Package Price :
-                </h4>
-                <p className="font-Lato text-blue-500"> 20,000 LKR</p>
-              </div>
-            </div>
-            <div className="mt-2 font-Lato text-gray-600 flex flex-row items-start">
-              <h4 className="capitalize font-Lato text-gray-500 mr-2 w-28">
-                details :
-              </h4>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit, sed quia consequuntur magni dolores eos qui ra
-              </p>
-            </div>
-          </div>
-          <footer className="flex justify-end mt-2">
-            <button
-              className="p-1 pr-2 pl-2 capitalize bg-primary rounded-md text-gray-100 font-Lato font-medium"
-              type="button"
-            >
-              select
-            </button>
-          </footer>
-        </div>
-      </div>
+      <FilterData AvailablePackages={AvailablePackages} />
     </div>
   );
 }
