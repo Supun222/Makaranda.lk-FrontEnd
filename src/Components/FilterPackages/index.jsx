@@ -35,7 +35,9 @@ function FilterPackages() {
             // eslint-disable-next-line prefer-const
             let tempPack = {
               // eslint-disable-next-line no-underscore-dangle
-              profile_id: item._id + no,
+              key_id: item._id + no,
+              // eslint-disable-next-line no-underscore-dangle
+              profile_id: item._id,
               profile_name: item.username,
               package_name: pak.package_name,
               package_details: pak.details,

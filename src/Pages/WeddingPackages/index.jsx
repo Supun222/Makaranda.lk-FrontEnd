@@ -8,7 +8,7 @@ function WeddingPackages() {
   return (
     <div className="h-screen">
       <MainHeader />
-      <div className="container mx-auto grid grid-cols-12 gap-3">
+      <div className="container mx-auto grid grid-cols-12 gap-3 min-h-[33rem]">
         <MainCategory />
         <Outlet />
         <PackageBucket />

@@ -1,17 +1,45 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Ratings from "../Ratings";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+import { setItemCard } from "../../Features/packageCard";
 
 // eslint-disable-next-line react/prop-types
 function FilterData({ AvailablePackages }) {
   //   console.log(AvailablePackages);
+
+  // const [items, SetItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({
+    Profile_id: null,
+    Propic: null,
+    PackageName: null,
+    Price: null,
+  });
+  const dispatch = useDispatch();
+
+  const setItems = () => {
+    dispatch(
+      setItemCard({
+        packagename: selectedItem.PackageName,
+        profileID: selectedItem.Profile_id,
+        profilePic: selectedItem.Propic,
+        price: selectedItem.Price,
+      })
+    );
+  };
+
+  useEffect(() => {
+    setItems();
+  }, [selectedItem]);
+
   return (
-    <div className="flex flex-col mt-5 ">
+    <div className="flex flex-col mt-5 w-full">
       {AvailablePackages && AvailablePackages.length > 0 ? (
         AvailablePackages.map((item) => (
           <div
             className="bg-slate-100 rounded-md w-full p-3 mb-3"
-            key={item.profile_id}
+            key={item.key_id}
           >
             <header className="flex flex-row border-b-4 border-b-slate-300 pb-2 justify-between">
               <div className="flex flex-row items-center">
@@ -47,13 +75,23 @@ function FilterData({ AvailablePackages }) {
                 <h4 className="capitalize font-Lato text-gray-500 mr-2">
                   details :
                 </h4>
-                <p>{item.package_details}</p>
+                <p className=" font-Lato text-gray-500 mr-2">
+                  {item.package_details}
+                </p>
               </div>
             </div>
             <footer className="flex justify-end mt-2">
               <button
                 className="p-1 pr-2 pl-2 capitalize bg-primary rounded-md text-gray-100 font-Lato font-medium"
                 type="button"
+                onClick={() =>
+                  setSelectedItem({
+                    Profile_id: item.profile_id,
+                    Propic: item.ProfilePic,
+                    PackageName: item.package_name,
+                    Price: item.price,
+                  })
+                }
               >
                 select
               </button>
