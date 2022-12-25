@@ -1,4 +1,5 @@
-function Minus() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, react/prop-types
+function Minus({ Classlist }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +7,7 @@ function Minus() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6"
+      className={Classlist}
     >
       <path
         strokeLinecap="round"

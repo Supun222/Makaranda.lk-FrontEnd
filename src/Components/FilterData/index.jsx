@@ -12,7 +12,8 @@ function FilterData({ AvailablePackages }) {
   // const [items, SetItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({
     Profile_id: null,
-    Propic: null,
+    Profile_name: null,
+    Package_id: null,
     PackageName: null,
     Price: null,
   });
@@ -21,9 +22,11 @@ function FilterData({ AvailablePackages }) {
   const setItems = () => {
     dispatch(
       setItemCard({
+        // eslint-disable-next-line no-underscore-dangle
+        profile_id: selectedItem.Profile_id,
+        profile_name: selectedItem.Profile_name,
+        package_id: selectedItem.Package_id,
         packagename: selectedItem.PackageName,
-        profileID: selectedItem.Profile_id,
-        profilePic: selectedItem.Propic,
         price: selectedItem.Price,
       })
     );
@@ -87,7 +90,8 @@ function FilterData({ AvailablePackages }) {
                 onClick={() =>
                   setSelectedItem({
                     Profile_id: item.profile_id,
-                    Propic: item.ProfilePic,
+                    Profile_name: item.profile_name,
+                    Package_id: item.key_id,
                     PackageName: item.package_name,
                     Price: item.price,
                   })
