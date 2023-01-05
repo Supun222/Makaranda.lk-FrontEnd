@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { selectItem } from "../../Features/packageCard";
 import Minus from "../../Assets/Icons/Svgs/Minus";
-import Profilepic from "../../Assets/Images/Profile/profile.jpg";
 
 function PackageBucket() {
   const [cardItem, setCarItem] = useState([]);
@@ -16,21 +16,28 @@ function PackageBucket() {
     } else if (packCard.packagename == null) {
       setCarItem([]);
     } else {
-      setTotalPrice(totalPrice + packCard.price);
       setCarItem((prev) => [...prev, packCard]);
     }
   }, [packCard]);
 
   function removeItem(id) {
     const newList = cardItem.filter((l) => l.package_id !== id);
-    console.log(cardItem[id]);
+    // console.log(cardItem[id]);
     // setTotalPrice(totalPrice - cardItem[id].price);
     setCarItem(newList);
   }
 
+  useEffect(() => {
+    setTotalPrice(0);
+    // eslint-disable-next-line array-callback-return
+    cardItem.map((L) => {
+      setTotalPrice(totalPrice + L.price);
+    });
+  }, [cardItem]);
+
   return (
     <div className="col-span-4 bg-white border border-gray-300 p-3 rounded-md">
-      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3">
+      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3 pb-2 border-b border-b-slate-200">
         item list
       </h2>
       <div className="flex flex-col">
@@ -60,7 +67,7 @@ function PackageBucket() {
                   </button>
                   <div className="flex flex-row bg-slate-100 rounded-md p-2 items-center w-48">
                     <img
-                      src={Profilepic}
+                      src={pack.pro_pic}
                       alt=""
                       className="w-8 h-8 rounded-full"
                     />
@@ -74,8 +81,8 @@ function PackageBucket() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center">
-                  <h2 className="text-end font-Lato font-semibold text-gray-600">
+                <div className="flex items-center justify-end">
+                  <h2 className="font-Lato font-semibold text-gray-600 mr-5">
                     {pack.price}
                   </h2>
                 </div>
@@ -91,7 +98,7 @@ function PackageBucket() {
         </div>
       </div>
       <hr className="mt-5" />
-      <footer className="mt-2 flex-shrink-0">
+      <footer className="mt-2 flex-shrink-0 flex-col">
         <div className="flex justify-around">
           <h2 className="font-Lato font-semibold text-base text-gray-400">
             Total Calculated Price <br /> 10% Discount
@@ -100,6 +107,26 @@ function PackageBucket() {
             {totalPrice} LKR
           </h2>
         </div>
+        {cardItem.length > 0 ? (
+          <div className="flex flex-row justify-end">
+            <button
+              type="button"
+              className="p-2 pt-1 pb-1 bg-gray-100 rounded-md font-Lato font-medium text-gray-500 mr-2 w-20 hover:opacity-80"
+              onClick={() => setCarItem([])}
+            >
+              Reset
+            </button>
+            <Link
+              to="/admin"
+              params
+              className="p-2 pt-1 pb-1 bg-primary rounded-md font-Lato font-medium text-white w-20 hover:opacity-80 text-center"
+            >
+              Send
+            </Link>
+          </div>
+        ) : (
+          <div />
+        )}
       </footer>
     </div>
   );

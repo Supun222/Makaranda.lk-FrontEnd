@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Ratings from "../Ratings";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import { setItemCard } from "../../Features/packageCard";
 
 // eslint-disable-next-line react/prop-types
@@ -13,6 +12,7 @@ function FilterData({ AvailablePackages }) {
   const [selectedItem, setSelectedItem] = useState({
     Profile_id: null,
     Profile_name: null,
+    Propic: null,
     Package_id: null,
     PackageName: null,
     Price: null,
@@ -25,6 +25,7 @@ function FilterData({ AvailablePackages }) {
         // eslint-disable-next-line no-underscore-dangle
         profile_id: selectedItem.Profile_id,
         profile_name: selectedItem.Profile_name,
+        pro_pic: selectedItem.Propic,
         package_id: selectedItem.Package_id,
         packagename: selectedItem.PackageName,
         price: selectedItem.Price,
@@ -47,7 +48,7 @@ function FilterData({ AvailablePackages }) {
             <header className="flex flex-row border-b-4 border-b-slate-300 pb-2 justify-between">
               <div className="flex flex-row items-center">
                 <img
-                  src={ProfilePic}
+                  src={item.pro_pic}
                   alt="profile"
                   className="w-10 rounded-full"
                 />
@@ -91,6 +92,7 @@ function FilterData({ AvailablePackages }) {
                   setSelectedItem({
                     Profile_id: item.profile_id,
                     Profile_name: item.profile_name,
+                    Propic: item.pro_pic,
                     Package_id: item.key_id,
                     PackageName: item.package_name,
                     Price: item.price,

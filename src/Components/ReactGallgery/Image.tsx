@@ -24,7 +24,6 @@ const Image: React.FC<Props> = ({
   className,
   showNumber,
 }) => {
-  console.log(height);
   return showNumber ? (
     <div
       style={{ width, height, padding: 0, position: "relative" }}

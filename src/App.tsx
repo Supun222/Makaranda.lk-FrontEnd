@@ -16,6 +16,7 @@ import VisitorReg from "./Pages/SignUp/visitor";
 import ServiceProviderReg from "./Pages/SignUp/ServiceProvider";
 import WeddingPackages from "./Pages/WeddingPackages";
 import FilterPackages from "./Components/FilterPackages";
+// import EmailDetails from "./Components/EmailDetails";
 
 function App() {
   return (
@@ -46,6 +47,11 @@ function App() {
             element={<FilterPackages />}
           />
         </Route>
+        {/* <Route
+          path="/package/send"
+          // eslint-disable-next-line no-undef
+          element={<EmailDetails SelectedCard={ } />}
+        /> */}
       </Routes>
     </Router>
   );

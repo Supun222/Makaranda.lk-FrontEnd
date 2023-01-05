@@ -17,7 +17,7 @@ function MainCategory() {
 
   return (
     <div className="bg-white border border-gray-300 p-3 rounded-md col-span-2">
-      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3">
+      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3 pb-2 border-b border-b-slate-200">
         select item
       </h2>
       <ul>

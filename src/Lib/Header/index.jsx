@@ -94,7 +94,7 @@ function MainHeader() {
             <input
               type="text"
               placeholder="What are you looking for ?"
-              className="font-Lato tracking-wide w-60 md:w-80  ml-4 placeholder-gray-500 border border-white focus:outline-none text-gray-600"
+              className="font-Lato tracking-wide w-60 md:w-80  ml-4 placeholder-gray-500 border border-white focus:outline-none text-gray-600 focus:ring-0 focus:ring-offset-0 focus:border-0"
             />
             <button
               type="button"

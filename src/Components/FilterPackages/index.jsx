@@ -39,6 +39,7 @@ function FilterPackages() {
               // eslint-disable-next-line no-underscore-dangle
               profile_id: item._id,
               profile_name: item.username,
+              pro_pic: item.propic,
               package_name: pak.package_name,
               package_details: pak.details,
               price: pak.price,
@@ -69,7 +70,7 @@ function FilterPackages() {
 
   return (
     <div className="col-span-6 bg-white border border-gray-300 p-3 rounded-md min-h-96 overflow-y-auto">
-      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3">
+      <h2 className="font-Lato font-semibold text-slate-600 capitalize mb-3 pb-2 border-b border-b-slate-200">
         Wedding / Party Packs
       </h2>
       <div className="flex flex-row justify-between items-center">

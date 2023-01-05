@@ -5,7 +5,6 @@ import ReactGallery from "../ReactGallgery/ReactGallery";
 import ShowPosts from "../../Resources/posts.json";
 
 function Posts() {
-  console.log(ShowPosts);
   const posts = [
     {
       username: "Thaththari Dance Crew",
@@ -17,7 +16,7 @@ function Posts() {
     },
     {
       username: "Thaththari Dance Crew",
-      groupId: 1,
+      groupId: 2,
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
@@ -25,7 +24,7 @@ function Posts() {
     },
     {
       username: "Thaththari Dance Crew",
-      groupId: 1,
+      groupId: 3,
       poastDate: "20 November 2022",
       caption:
         "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
@@ -34,7 +33,7 @@ function Posts() {
   ];
 
   return (
-    <div className="col-span-3">
+    <div className="">
       <div className="">
         {posts && posts.length > 0 ? (
           posts.map((post) => (
