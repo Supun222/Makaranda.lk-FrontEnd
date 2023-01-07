@@ -14,6 +14,7 @@ import Location from "./Components/Location";
 import Categories from "./Components/Categories";
 import VisitorReg from "./Pages/SignUp/visitor";
 import ServiceProviderReg from "./Pages/SignUp/ServiceProvider";
+import SecondServiceProviderReg from "./Pages/SignUp/SecondServiceProviderReg";
 import WeddingPackages from "./Pages/WeddingPackages";
 import FilterPackages from "./Components/FilterPackages";
 // import EmailDetails from "./Components/EmailDetails";
@@ -25,7 +26,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Timeline />}>
-          <Route path="/timeline/:category/:location" element={<Posts />} />
+          <Route
+            path="/timeline/:category/:location"
+            element={<Posts profileID={undefined} />}
+          />
         </Route>
         <Route path="/profile/index=:id" element={<Profile />} />
         <Route path="/login" element={<Login />} />
@@ -33,6 +37,10 @@ function App() {
           <Route path="/user/visitor/new" element={<VisitorReg />} />
           <Route path="/user/Service/new" element={<ServiceProviderReg />} />
         </Route>
+        <Route
+          path="/user/Service/new/servicedetails"
+          element={<SecondServiceProviderReg />}
+        />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminHome />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />

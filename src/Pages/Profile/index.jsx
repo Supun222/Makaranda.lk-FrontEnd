@@ -1,4 +1,6 @@
-import React from "react";
+// import React, { useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import axios from "../../axios";
 import ProfileIntro from "../../Components/ProfileIntro";
 import MainHeader from "../../Lib/Header";
 import ProfileDetails from "../../Components/ProfileDetails/index";
@@ -7,6 +9,15 @@ import Posts from "../../Components/Posts";
 import AddPosts from "../../Components/Posts/add";
 
 function Profile() {
+  // const { id } = useParams();
+  // const getposts = async () => {
+  //   axios.get(`/post/id=${id}`).then((res) => console.log(res));
+  // };
+
+  // useEffect(() => {
+  //   getposts();
+  // }, []);
+
   return (
     <div>
       <MainHeader />
@@ -16,7 +27,7 @@ function Profile() {
           <ProfileDetails />
           <div className="col-span-3 ">
             <AddPosts />
-            <Posts />
+            <Posts profileID="635b6973ba4a00febf671cd9" />
           </div>
         </div>
       </div>

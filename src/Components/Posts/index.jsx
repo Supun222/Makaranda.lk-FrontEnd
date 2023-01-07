@@ -1,36 +1,25 @@
 import { Link } from "react-router-dom";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+import { useEffect, useState } from "react";
+import axios from "../../axios";
+// import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import DotsIcon from "../../Assets/Icons/Svgs/Dots";
 import ReactGallery from "../ReactGallgery/ReactGallery";
-import ShowPosts from "../../Resources/posts.json";
+// import ShowPosts from "../../Resources/posts.json";
 
-function Posts() {
-  const posts = [
-    {
-      username: "Thaththari Dance Crew",
-      groupId: 1,
-      poastDate: "20 November 2022",
-      caption:
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: ShowPosts.postOne,
-    },
-    {
-      username: "Thaththari Dance Crew",
-      groupId: 2,
-      poastDate: "20 November 2022",
-      caption:
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: ShowPosts.postTwo,
-    },
-    {
-      username: "Thaththari Dance Crew",
-      groupId: 3,
-      poastDate: "20 November 2022",
-      caption:
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit autfugit sed quia consequuntur magni dolores eos qui ra",
-      images: ShowPosts.postthree,
-    },
-  ];
+// eslint-disable-next-line react/prop-types
+function Posts({ profileID }) {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = () => {
+    axios
+      .get(`/post/post/id=${profileID}`)
+      .then((res) => setPosts(res.data.posts))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <div className="">
@@ -45,7 +34,7 @@ function Posts() {
                 <div className="flex flex-row justify-between items-center w-full">
                   <div className="flex flex-row items-center mb-3">
                     <img
-                      src={ProfilePic}
+                      src={post.profile_pic}
                       alt="profile"
                       className="w-12 rounded-full"
                     />

@@ -160,23 +160,6 @@ function VisitorReg() {
             {errors.floating_cpassword?.message}
           </p>
         </div>
-        {/* <div className="mt-3">
-          <div className="flex justify-center">
-            <div className="mb-3 w-96">
-              <label
-                htmlFor="profilePic"
-                className="form-label inline-block mb-2 text-gray-400 font-Lato text-base"
-              >
-                Profile Picture
-              </label>
-              <input
-                className="form-control block w-full px-0.5 py-0.5 text-sm font-normal  text-gray-400  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:text-gray-400 focus:bg-white focus:border-primary focus:outline-none"
-                type="file"
-                id="profilePic"
-              />
-            </div>
-          </div>
-        </div> */}
         <div className="flex justify-center items-center">
           <button
             type="submit"
