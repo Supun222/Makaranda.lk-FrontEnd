@@ -1,12 +1,19 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
+
 import React from "react";
 import Breadcrums from "../../Lib/Profile/Breadcrums";
-import CoverPic from "../../Assets/Images/Profile/cover.jpg";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import Ratings from "../Ratings";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 import Packages from "../Packages";
 
-function ProfileIntro() {
+function ProfileIntro({
+  profileName,
+  ProfilePic,
+  CoverPic,
+  Membership,
+  packs,
+}) {
   return (
     <div className="">
       <Breadcrums />
@@ -30,7 +37,7 @@ function ProfileIntro() {
           </div>
           <div className="p-3 flex flex-col">
             <h1 className="font-Lato text-gray-600 font-semibold text-xl tracking-wide">
-              Thathari Dancing Crew
+              {profileName}
             </h1>
             <div className="flex flex-row items-center">
               <Ratings ClassList="" />
@@ -40,7 +47,7 @@ function ProfileIntro() {
               >
                 Rate Us
               </button>
-              <h1 className="text-green-500 ml-4">Premium Membership</h1>
+              <h1 className="text-green-500 ml-4">{Membership} Membership</h1>
             </div>
           </div>
         </div>
@@ -52,7 +59,7 @@ function ProfileIntro() {
             <ChatIcon classList="w-5 fill-black mr-2" />
             <p>Message</p>
           </button>
-          <Packages />
+          <Packages items={packs} />
         </div>
       </div>
     </div>
