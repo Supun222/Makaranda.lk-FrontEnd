@@ -17,7 +17,8 @@ import ServiceProviderReg from "./Pages/SignUp/ServiceProvider";
 import SecondServiceProviderReg from "./Pages/SignUp/SecondServiceProviderReg";
 import WeddingPackages from "./Pages/WeddingPackages";
 import FilterPackages from "./Components/FilterPackages";
-// import EmailDetails from "./Components/EmailDetails";
+import ProfileDetails from "./Pages/SignUp/ProfileDetails";
+import FinalPage from "./Pages/SignUp/FinalPage";
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
         <Route
           path="/user/Service/new/servicedetails"
           element={<SecondServiceProviderReg />}
+        />
+        <Route
+          path="/user/Service/new/profiledetails"
+          element={<ProfileDetails />}
+        />
+        <Route
+          path="/user/Service/new/CoverPageDetails"
+          element={<FinalPage />}
         />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminHome />}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
@@ -51,6 +51,10 @@ function ServiceProviderReg() {
       console.log(JSON.stringify(err.message));
     }
   };
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   return (
     <div className="flex justify-center items-center">

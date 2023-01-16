@@ -21,3 +21,7 @@ details > summary::-webkit-details-marker /* Safari */ {
 // 	outline: none;
 // 	content: none;	
 // }
+
+.form-select:focus, .form-control:focus {
+  box-shadow: 0 0 0 1px #d03801 !important;
+}

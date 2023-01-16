@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../../axios/index";
+// import axios from "../../axios/index";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 
 function AddPosts() {
@@ -18,20 +18,23 @@ function AddPosts() {
   };
 
   const sendPost = async () => {
-    const bodyFormData = new FormData();
-    photos.forEach((file) => {
-      bodyFormData.append("file", file);
-    });
-    bodyFormData.append("profileId", profileID);
-    bodyFormData.append("decription", caption);
-    await axios({
-      method: "post",
-      url: "http://localhost:8080/api/post/post",
-      data: bodyFormData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+    console.log(photos);
+    console.log(profileID);
+    console.log(caption);
+    // const bodyFormData = new FormData();
+    // photos.forEach((file) => {
+    //   bodyFormData.append("file", file);
+    // });
+    // bodyFormData.append("profileId", profileID);
+    // bodyFormData.append("decription", caption);
+    // await axios({
+    //   method: "post",
+    //   url: "http://localhost:8080/api/post/post",
+    //   data: bodyFormData,
+    //   headers: { "Content-Type": "multipart/form-data" },
+    // })
+    //   .then((response) => console.log(response))
+    //   .catch((err) => console.log(err));
   };
 
   return (
