@@ -2,7 +2,9 @@ import { React } from "react";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 // import env from "react-dotenv";
 
-function Locations() {
+// eslint-disable-next-line react/prop-types
+function Locations({ places }) {
+  console.log(places);
   const mapStyles = {
     height: "20rem",
     width: "100%",

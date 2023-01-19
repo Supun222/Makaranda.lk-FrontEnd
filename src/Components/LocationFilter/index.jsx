@@ -11,8 +11,6 @@ function Location() {
       .then((response) => setsubLocation(response.data.locations));
   };
 
-  console.log(Locations);
-
   useEffect(() => {
     renderCategories();
   }, []);

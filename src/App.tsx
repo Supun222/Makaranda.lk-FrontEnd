@@ -27,12 +27,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Timeline />}>
-          <Route
-            path="/timeline/:category/:location"
-            element={<Posts profileID={undefined} />}
-          />
+          <Route path="/timeline/:category/:location" element={<Posts />} />
         </Route>
-        <Route path="/profile/index=:id" element={<Profile />} />
+        <Route path="/profile" element={<Profile />}>
+          <Route path="/profile/index=:id" element={<Posts />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<SignUp />}>
           <Route path="/user/visitor/new" element={<VisitorReg />} />

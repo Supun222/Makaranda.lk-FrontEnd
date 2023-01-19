@@ -13,8 +13,6 @@ function Category() {
       );
   };
 
-  console.log(subCategories);
-
   useEffect(() => {
     renderCategories();
   }, []);

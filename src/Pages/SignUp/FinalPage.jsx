@@ -7,6 +7,7 @@ function FinalPage() {
   const [profilePic, setProfilePic] = useState();
   const [coverPhoto, setCoverPhoto] = useState();
   const [membership, setMembership] = useState([]);
+  const [index, setIndex] = useState();
   const [selectedMembership, setSelectedMembership] = useState();
 
   const getAllMembership = async () => {
@@ -20,8 +21,8 @@ function FinalPage() {
   }, []);
 
   useEffect(() => {
-    // console.table(membership[selectedMembership]);
-  }, [selectedMembership]);
+    setSelectedMembership(membership[index]);
+  }, [index]);
 
   const resgister = async () => {
     // const firstdata = JSON.parse(localStorage.getItem("secondData"));
@@ -46,7 +47,7 @@ function FinalPage() {
     bodyFormData.append("userRole", "SERVICE_PROVIDER");
     bodyFormData.append(
       "username",
-      localStorage.getItem("firstData").newUsername
+      JSON.parse(localStorage.getItem("firstData")).newUsername
     );
     bodyFormData.append(
       "email",
@@ -187,7 +188,7 @@ function FinalPage() {
                     name="membership"
                     id={mem._id}
                     value={no}
-                    onChange={(e) => setSelectedMembership(e.target.value)}
+                    onChange={(e) => setIndex(e.target.value)}
                   />
                 </td>
               </tr>

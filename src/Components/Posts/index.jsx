@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+/* eslint-disable no-unused-expressions */
+import { Link, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../axios";
 // import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
@@ -7,24 +8,40 @@ import ReactGallery from "../ReactGallgery/ReactGallery";
 // import ShowPosts from "../../Resources/posts.json";
 
 // eslint-disable-next-line react/prop-types
-function Posts({ profileID }) {
+function Posts() {
   const [posts, setPosts] = useState([]);
+  // const [profileIDs, setProfileIdss] = useState([]);
+  const [profileIdD] = useOutletContext();
 
   const getPosts = () => {
-    axios
-      .get(`/post/post/id=${profileID}`)
-      .then((res) => setPosts(res.data.posts))
-      .catch((err) => console.log(err));
+    // setProfileIdss(profileIdD);
+    if (profileIdD) {
+      profileIdD.forEach(async (element) => {
+        await axios
+          .get(`/post/post/id=${element}`)
+          .then((res) => {
+            console.log(res.data.result, "array data");
+            const datas = res.data.result;
+            setPosts((prev) => [...prev, ...datas]);
+          })
+          .catch((err) => console.log(err));
+      });
+    }
   };
 
   useEffect(() => {
     getPosts();
-  }, []);
+    // console.log(profileIdD, "hii");
+  }, [profileIdD]);
+
+  useEffect(() => {
+    console.log(posts, "posts");
+  }, [posts]);
 
   return (
     <div className="">
       <div className="">
-        {posts && posts.length > 0 ? (
+        {posts && Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
             <div
               className="p-3 w-full border-4 border-gray-200 rounded-lg mb-5"

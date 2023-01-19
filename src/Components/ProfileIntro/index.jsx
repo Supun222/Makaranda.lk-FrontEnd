@@ -13,10 +13,11 @@ function ProfileIntro({
   CoverPic,
   Membership,
   packs,
+  servicetype,
 }) {
   return (
     <div className="">
-      <Breadcrums />
+      <Breadcrums profileName={profileName} serviceType={servicetype} />
       <div className="rounded-lg">
         <img
           src={CoverPic}
@@ -36,7 +37,7 @@ function ProfileIntro({
             </div>
           </div>
           <div className="p-3 flex flex-col">
-            <h1 className="font-Lato text-gray-600 font-semibold text-xl tracking-wide">
+            <h1 className="font-Lato text-gray-600 font-semibold text-xl tracking-wide capitalize">
               {profileName}
             </h1>
             <div className="flex flex-row items-center">

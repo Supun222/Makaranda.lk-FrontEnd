@@ -1,10 +1,31 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import TimelineHeader from "../../Lib/TimelineHeader";
 import SearchPanel from "../../Components/SearchPanel";
 import FilterPanel from "../../Components/FilterPanel";
 import Newprofiles from "../../Components/Newprofiles";
+import axios from "../../axios";
 
 function Timeline() {
+  const { category } = useParams();
+  const [profileID, setProfileIds] = useState([]);
+  // const [changeSet, setChangeSet] = useState();
+  const getUsersIds = async () => {
+    await axios
+      .get(`/user/category=${category}`)
+      .then((res) => setProfileIds(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getUsersIds();
+    // console.log(profileID);
+  }, [category]);
+
+  useEffect(() => {
+    console.log(profileID, "timeline");
+  }, [profileID]);
+
   return (
     <div className="text-center">
       <TimelineHeader />
@@ -19,7 +40,7 @@ function Timeline() {
               <Newprofiles />
             </div>
             <div className="w-full">
-              <Outlet />
+              <Outlet context={[profileID]} />
             </div>
           </div>
         </div>

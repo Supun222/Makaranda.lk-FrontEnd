@@ -5,15 +5,27 @@ import Introduction from "./Introduction";
 import ServiceDetails from "./ServiceDetails";
 import Message from "./Message";
 
-function ProfileDetails({ socialDetails, ServiceType, Locations }) {
+function ProfileDetails({
+  serviceType,
+  description,
+  locations,
+  socialDetails,
+  Mobile,
+  Facebook,
+  Youtube,
+  Instagram,
+}) {
   return (
     <div className="col-span-2">
-      <Introduction
-        socialDetails={socialDetails}
-        ServiceType={ServiceType}
-        location={Locations}
+      <Introduction Description={description} ServiceType={serviceType} />
+      <ServiceDetails
+        Locations={locations}
+        SocialDetails={socialDetails}
+        facebook={Facebook}
+        mobile={Mobile}
+        youtube={Youtube}
+        instagram={Instagram}
       />
-      <ServiceDetails />
       <Message />
     </div>
   );

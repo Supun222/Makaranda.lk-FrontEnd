@@ -1,39 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import axios from "../../axios";
 import ProfileIntro from "../../Components/ProfileIntro";
 import MainHeader from "../../Lib/Header";
 import ProfileDetails from "../../Components/ProfileDetails/index";
 import Footer from "../../Lib/Footer";
-import Posts from "../../Components/Posts";
+// import Posts from "../../Components/Posts";
 import AddPosts from "../../Components/Posts/add";
 
 function Profile() {
   const { id } = useParams();
+  const [profileID, setProfileIds] = useState([]);
   const [profileName, setProfileName] = useState();
   const [profilePic, setProfilePic] = useState();
   const [coverPhoto, setCoverPhoto] = useState();
   const [packages, setPackages] = useState();
-  const [socialDetails, setSocialDetails] = useState();
-  const [locations, setLocations] = useState();
-  const [serviceType, setServiceType] = useState();
+  const [Locations, setLocations] = useState();
+  const [ServiceType, setServiceType] = useState();
   const [membership, setMembership] = useState();
+  const [Decription, setDescription] = useState();
+  const [mobile, setMobile] = useState();
+  const [youtube, setYoutube] = useState();
+  const [instagram, setInstagram] = useState();
+  const [facebook, setFacebook] = useState();
+  // const [email, setEmail] = useState();
   const getposts = async () => {
-    axios.get(`/user/user/${id}`).then((res) => {
+    await axios.get(`/user/user/${id}`).then((res) => {
       setProfileName(res.data.username);
       setProfilePic(res.data.profile_pic);
       setCoverPhoto(res.data.cover_pic);
       setPackages(res.data.packages);
-      setMembership(res.data.membership);
+      setMembership(res.data.membership.name);
       setServiceType(res.data.service_type);
-      setSocialDetails(res.data.social_details);
+      setMobile(res.data.social_details.mobile);
       setLocations(res.data.service_location);
+      setDescription(res.data.description);
+      setYoutube(res.data.social_details.youtube);
+      setInstagram(res.data.social_details.instagram);
+      setFacebook(res.data.social_details.facebook);
+      // setEmail(res.data.email);
     });
   };
 
   useEffect(() => {
-    getposts();
-  }, []);
+    if (id) {
+      setProfileIds([id]);
+      getposts();
+    }
+  }, [id]);
 
   return (
     <div>
@@ -44,17 +58,22 @@ function Profile() {
           ProfilePic={profilePic}
           CoverPic={coverPhoto}
           Membership={membership}
-          Packages={packages}
+          packs={packages}
+          servicetype={ServiceType}
         />
         <div className="grid grid-cols-5 h-fit gap-1 lg:gap-2">
           <ProfileDetails
-            Locations={locations}
-            ServiceType={serviceType}
-            socialDetails={socialDetails}
+            locations={Locations}
+            serviceType={ServiceType}
+            Mobile={mobile}
+            Facebook={facebook}
+            Youtube={youtube}
+            Instagram={instagram}
+            description={Decription}
           />
           <div className="col-span-3 ">
             <AddPosts />
-            <Posts profileID={id} />
+            <Outlet context={[profileID]} />
           </div>
         </div>
       </div>

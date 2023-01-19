@@ -1,9 +1,17 @@
-// import packages from "../../Resources/Packages";
+/* eslint-disable react/prop-types */
+// import { useEffect, useState } from "react";
 import PackageIcon from "../../Assets/Icons/Svgs/Package";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
-import Package from "../../Resources/packages.json";
+// import Package from "../../Resources/packages.json";
 
-function Packages() {
+// eslint-disable-next-line react/prop-types
+function Packages({ items }) {
+  // const [Packagess, setPackages] = useState(items);
+
+  // useEffect(() => {
+  //   setPackages(items);
+  //   console.table(items);
+  // }, []);
   return (
     <div>
       <button
@@ -47,8 +55,8 @@ function Packages() {
                   </tr>
                 </thead>
                 <tbody className="mt-1 w-full">
-                  {Package && Package.packages.length > 0 ? (
-                    Package.packages.map((item, no) => (
+                  {items && items.length > 0 ? (
+                    items.map((item, no) => (
                       <tr
                         className="grid grid-cols-5 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
                         key={item.id}
@@ -57,13 +65,13 @@ function Packages() {
                           {no + 1}
                         </td>
                         <td className="text-center font-Lato text-base font-semibold text-gray-600 capitalize">
-                          {item.package_name}
+                          {item.packageName}
                         </td>
                         <td className="text-center font-Lato text-base font-semibold text-gray-600 col-span-2">
-                          {item.details}
+                          {item.packageDetails}
                         </td>
                         <td className="text-center font-Lato text-base font-semibold text-gray-600">
-                          {item.price}
+                          {item.packagePrice}
                         </td>
                       </tr>
                     ))
