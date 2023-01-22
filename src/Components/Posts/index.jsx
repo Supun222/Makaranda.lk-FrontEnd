@@ -1,26 +1,21 @@
-/* eslint-disable no-unused-expressions */
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import moment from "moment";
 import axios from "../../axios";
-// import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import DotsIcon from "../../Assets/Icons/Svgs/Dots";
 import ReactGallery from "../ReactGallgery/ReactGallery";
-// import ShowPosts from "../../Resources/posts.json";
 
-// eslint-disable-next-line react/prop-types
 function Posts() {
+  const { category, location } = useParams();
   const [posts, setPosts] = useState([]);
-  // const [profileIDs, setProfileIdss] = useState([]);
   const [profileIdD] = useOutletContext();
 
   const getPosts = () => {
-    // setProfileIdss(profileIdD);
     if (profileIdD) {
       profileIdD.forEach(async (element) => {
         await axios
           .get(`/post/post/id=${element}`)
           .then((res) => {
-            console.log(res.data.result, "array data");
             const datas = res.data.result;
             setPosts((prev) => [...prev, ...datas]);
           })
@@ -30,13 +25,13 @@ function Posts() {
   };
 
   useEffect(() => {
+    setPosts([]);
     getPosts();
-    // console.log(profileIdD, "hii");
   }, [profileIdD]);
 
   useEffect(() => {
     console.log(posts, "posts");
-  }, [posts]);
+  }, [category, location]);
 
   return (
     <div className="">
@@ -56,20 +51,22 @@ function Posts() {
                       className="w-12 rounded-full"
                     />
                     <Link
-                      to="/profile/index=1"
+                      to={`/profile/index=${post.proID}`}
                       className="flex flex-col items-start justify-center ml-2"
                     >
-                      <h3 className="font-Lato font-semibold text-base text-gray-700">
+                      <h3 className="font-Lato font-semibold text-base text-gray-700 capitalize">
                         {post.username}
                       </h3>
-                      <p className="text-gray-400 text-sm">{post.poastDate}</p>
+                      <p className="text-gray-400 text-sm">
+                        {moment(post.publishDate).format("d MMMM yyyy")}
+                      </p>
                     </Link>
                   </div>
                   <div className="bg-slate-200 rounded-full p-1">
                     <DotsIcon classList="w-5" />
                   </div>
                 </div>
-                <p className="text-gray-600">{post.caption}</p>
+                <p className="text-gray-600 text-left mb-2">{post.caption}</p>
                 <div className="">
                   <ReactGallery images={post.images} width="100" height={600} />
                 </div>

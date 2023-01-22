@@ -1,26 +1,27 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../../axios/index";
 
 function Category() {
   const [subCategories, setsubCategory] = useState([]);
+  const { category, location } = useParams();
 
   const renderCategories = () => {
-    axios
-      .get("/category/all")
-      .then((response) =>
-        setsubCategory(response.data.Category[0].subcategory)
-      );
+    axios.get(`/category/${category}`).then((response) => {
+      setsubCategory(response.data);
+    });
   };
 
   useEffect(() => {
     renderCategories();
-  }, []);
+    // console.log(subCategories);
+  }, [category]);
 
   return (
     <div className="mt-4">
       <hr className="h-2" />
-      <Link to="/timeline/dancing/all">
+      <Link to={`/timeline/${category}/all`}>
         <h3 className="font-Lato text-start text-lg font-semibold text-gray-500">
           All Categories
         </h3>
@@ -33,7 +34,7 @@ function Category() {
               key={item}
             >
               <Link
-                to={`/timeline/dancing/${item}`}
+                to={`/timeline/${item}/${location}`}
                 className="inline-flex mt-2"
               >
                 {item} <p className="text-gray-500 ml-2">(102)</p>

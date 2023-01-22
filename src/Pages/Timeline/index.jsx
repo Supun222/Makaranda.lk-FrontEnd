@@ -7,12 +7,12 @@ import Newprofiles from "../../Components/Newprofiles";
 import axios from "../../axios";
 
 function Timeline() {
-  const { category } = useParams();
+  const { category, location } = useParams();
   const [profileID, setProfileIds] = useState([]);
   // const [changeSet, setChangeSet] = useState();
   const getUsersIds = async () => {
     await axios
-      .get(`/user/category=${category}`)
+      .get(`/user/timeline/category=${category}/location=${location}`)
       .then((res) => setProfileIds(res.data))
       .catch((err) => console.log(err));
   };
@@ -23,8 +23,13 @@ function Timeline() {
   }, [category]);
 
   useEffect(() => {
-    console.log(profileID, "timeline");
+    // console.log(profileID, "timeline");
   }, [profileID]);
+
+  useEffect(() => {
+    setProfileIds([]);
+    getUsersIds();
+  }, [location, category]);
 
   return (
     <div className="text-center">

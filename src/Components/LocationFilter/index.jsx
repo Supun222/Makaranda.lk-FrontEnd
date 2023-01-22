@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../../axios/index";
 
 function Location() {
   const [Locations, setsubLocation] = useState([]);
+  const { category } = useParams();
 
   const renderCategories = () => {
     axios
@@ -18,7 +19,7 @@ function Location() {
   return (
     <div className="mt-4">
       <hr className="h-2" />
-      <Link to="/timeline/dancing/all">
+      <Link to={`/timeline/${category}/all`}>
         <h3 className="font-Lato text-start text-lg font-semibold text-gray-500">
           All Locations
         </h3>
@@ -31,7 +32,7 @@ function Location() {
               key={item.location_name}
             >
               <Link
-                to={`/timeline/dancing/${item.location_name}`}
+                to={`/timeline/${category}/${item.location_name}`}
                 className="inline-flex mt-2"
               >
                 {item.location_name} <p className="text-gray-500 ml-2">(122)</p>
