@@ -19,6 +19,7 @@ import WeddingPackages from "./Pages/WeddingPackages";
 import FilterPackages from "./Components/FilterPackages";
 import ProfileDetails from "./Pages/SignUp/ProfileDetails";
 import FinalPage from "./Pages/SignUp/FinalPage";
+import ForgotPassword from "./Pages/FogotPassword";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/profile/index=:id" element={<Posts />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/password/reset" element={<ForgotPassword />} />
         <Route path="/user" element={<SignUp />}>
           <Route path="/user/visitor/new" element={<VisitorReg />} />
           <Route path="/user/Service/new" element={<ServiceProviderReg />} />
@@ -63,11 +65,6 @@ function App() {
             element={<FilterPackages />}
           />
         </Route>
-        {/* <Route
-          path="/package/send"
-          // eslint-disable-next-line no-undef
-          element={<EmailDetails SelectedCard={ } />}
-        /> */}
       </Routes>
     </Router>
   );

@@ -30,7 +30,7 @@ function Category() {
         {subCategories && subCategories.length > 0 ? (
           subCategories.map((item) => (
             <div
-              className="font-Lato text-lg font-semibold text-primary text-start"
+              className="font-Lato text-lg font-semibold text-primary text-start capitalize"
               key={item}
             >
               <Link
