@@ -7,6 +7,7 @@ import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 import UserIcon from "../../Assets/Icons/Svgs/User";
 import LocationIcon from "../../Assets/Icons/Svgs/Location";
 import SearchIcon from "../../Assets/Icons/Svgs/Search";
+import Booking from "../../Components/Booking";
 import LogOutIcon from "../../Assets/Icons/Svgs/LogOut";
 
 function MainHeader() {
@@ -44,14 +45,20 @@ function MainHeader() {
             </div>
           </Link>
           <div className="flex flex-row mt-5 items-center">
-            <Link to="/chat">
-              <div className="flex flex-row items-center ml-5 mr-2">
+            <div className="flex flex-row items-center ml-5 mr-2">
+              <button
+                type="button"
+                className="flex flex-row items-center"
+                data-bs-toggle="modal"
+                data-bs-target="#bookingList"
+              >
                 <ChatIcon classList="h-3 md:h-10 fill-white" />
                 <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
-                  Chat
+                  Bookings
                 </p>
-              </div>
-            </Link>
+              </button>
+            </div>
+            <Booking />
             <div>
               <div>
                 {user ? (
