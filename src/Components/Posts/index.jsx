@@ -12,6 +12,7 @@ function Posts() {
 
   const getPosts = () => {
     if (profileIdD) {
+      setPosts([]);
       profileIdD.forEach(async (element) => {
         await axios
           .get(`/post/post/id=${element}`)
@@ -30,7 +31,7 @@ function Posts() {
   }, [profileIdD]);
 
   useEffect(() => {
-    console.log(posts, "posts");
+    setPosts([]);
   }, [category, location]);
 
   return (
@@ -40,6 +41,7 @@ function Posts() {
           posts.map((post) => (
             <div
               className="p-3 w-full border-4 border-gray-200 rounded-lg mb-5"
+              // eslint-disable-next-line no-underscore-dangle
               key={post.groupId}
             >
               <div className="flex flex-col w-full justify-between">

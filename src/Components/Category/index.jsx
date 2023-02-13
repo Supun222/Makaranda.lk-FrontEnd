@@ -8,8 +8,8 @@ function Category() {
   const { category, location } = useParams();
 
   const renderCategories = () => {
-    axios.get(`/category/${category}`).then((response) => {
-      setsubCategory(response.data);
+    axios.get(`/category/all`).then((response) => {
+      setsubCategory(response.data.Category);
     });
   };
 
@@ -31,13 +31,13 @@ function Category() {
           subCategories.map((item) => (
             <div
               className="font-Lato text-lg font-semibold text-primary text-start capitalize"
-              key={item}
+              key={item._id}
             >
               <Link
                 to={`/timeline/${item}/${location}`}
                 className="inline-flex mt-2"
               >
-                {item} <p className="text-gray-500 ml-2">(102)</p>
+                {item._id} <p className="text-gray-500 ml-2">({item.count})</p>
               </Link>
             </div>
           ))
