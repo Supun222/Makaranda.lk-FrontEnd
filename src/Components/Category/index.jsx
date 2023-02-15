@@ -8,7 +8,7 @@ function Category() {
   const { category, location } = useParams();
 
   const renderCategories = () => {
-    axios.get(`/category/all`).then((response) => {
+    axios.get(`/category/${category}`).then((response) => {
       setsubCategory(response.data.Category);
     });
   };
