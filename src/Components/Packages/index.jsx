@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 import axios from "../../axios";
 import PackageIcon from "../../Assets/Icons/Svgs/Package";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+import { selectUser } from "../../Features/userSlice";
 // import Package from "../../Resources/packages.json";
 
 // eslint-disable-next-line react/prop-types
@@ -12,13 +14,12 @@ function Packages({ items }) {
   const [bookDate, setBookDate] = useState();
   const [packageName, setPackageName] = useState();
   const [madeBy, setMadeBy] = useState();
+  const user = useSelector(selectUser);
   // eslint-disable-next-line camelcase
   const { id } = useParams();
 
   useEffect(() => {
-    setPackageName("ssss");
-    setMadeBy("635d23275085b27bbc7a4473");
-    setBookDate("sdas");
+    setMadeBy(user.userID);
     console.log(id);
     console.log(madeBy);
     console.log(bookDate);
