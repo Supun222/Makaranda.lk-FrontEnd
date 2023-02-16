@@ -30,6 +30,7 @@ function Login() {
       );
       dispatch(
         login({
+          userID: response.data.userID,
           username: response.data.username,
           token: response.data.token,
           role: response.data.role,

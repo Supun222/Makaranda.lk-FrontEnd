@@ -17,7 +17,7 @@ function Packages({ items }) {
 
   useEffect(() => {
     setPackageName("ssss");
-    setMadeBy("635b2fdd00dd5168c4204bb6");
+    setMadeBy("635d23275085b27bbc7a4473");
     setBookDate("sdas");
     console.log(id);
     console.log(madeBy);
@@ -44,7 +44,7 @@ function Packages({ items }) {
         .then((res) => console.log(res));
       toast.success("Booking successful");
     } catch (err) {
-      toast.error("Successfully logged in");
+      toast.error(err);
     }
   };
 

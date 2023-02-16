@@ -1,27 +1,31 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
 import moment from "moment";
+import { useSelector } from "react-redux";
 import axios from "../../axios";
 import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
 import EditdIcon from "../../Assets/Icons/Svgs/Edit";
+import { selectUser } from "../../Features/userSlice";
 
 function Booking() {
-  const [profileID, setProfileID] = useState("63c5565f1dcbdbeb4b9bdf20");
+  const [profileID, setProfileID] = useState("635d23275085b27bbc7a4473");
   const [bookings, setBookings] = useState([]);
+  const user = useSelector(selectUser);
 
   const getBookings = async () => {
     try {
-      setProfileID("63c5565f1dcbdbeb4b9bdf20");
+      setProfileID("635d23275085b27bbc7a4473");
       await axios
-        .get(`/booking/service_provider=${profileID}`)
+        .get(`/booking/service_receiver=${profileID}`)
         .then((res) => setBookings(res.data))
         .catch((err) => console.log(err));
     } catch (err) {
-      console.log(err);
+      console.log(user);
     }
   };
 
   useEffect(() => {
-    setProfileID("63c5565f1dcbdbeb4b9bdf20");
+    setProfileID("635d23275085b27bbc7a4473");
     getBookings();
     console.log(bookings);
   }, []);
@@ -46,13 +50,12 @@ function Booking() {
           <div className="modal-body relative p-4">
             <table className="min-w-full flex flex-col">
               <thead className="bg-slate-100 rounded">
-                <tr className="grid grid-cols-12 items-center p-3">
+                <tr className="grid grid-cols-11 items-center p-3">
                   <th className="text-start">#</th>
                   <th className="text-center col-span-3">Customer Name</th>
-                  <th className="text-center col-span-2">Customer Name</th>
                   <th className="text-center col-span-2">Package name</th>
                   <th className="text-center col-span-2">Booking date</th>
-                  <th className="text-center">Status</th>
+                  <th className="text-center col-span-2">Status</th>
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
@@ -60,47 +63,71 @@ function Booking() {
                 {bookings && bookings.length > 0 ? (
                   bookings.map((item, no) => (
                     <tr
-                      className="grid grid-cols-12 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
+                      className="grid grid-cols-11 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
                       // eslint-disable-next-line no-underscore-dangle
                       key={item._id}
                     >
                       <td className="text-start font-Lato text-base font-semibold text-gray-600">
                         {no + 1}
                       </td>
-                      <td className="text-start col-span-3 font-Lato text-base font-semibold text-gray-600">
-                        {item.profile_id}
+                      <td className="text-start col-span-3 font-Lato text-base font-semibold text-gray-600 capitalize">
+                        {item.service_provider}
                       </td>
-                      <td className="text-start col-span-2 font-Lato text-base font-semibold text-gray-600">
-                        {item.made_by}
-                      </td>
-                      <td className="text-center col-span-2 font-Lato text-base font-semibold text-gray-600">
+                      <td className="text-center col-span-2 font-Lato text-base font-semibold text-gray-600 capitalize">
                         {item.package_name}
                       </td>
                       <td className="text-center col-span-2 font-Lato text-base font-semibold text-gray-600">
                         {moment(item.booked_date).format("dd MMMM yyyy")}
                       </td>
-                      <td className="text-center font-Lato text-base font-semibold text-gray-600">
-                        {item.status}
-                      </td>
-                      <td className="text-center flex flex-row items-center justify-center">
-                        <button
-                          type="button"
-                          className="p-2 bg-white rounded shadow mr-5"
-                        >
-                          <EditdIcon classList="fill-green-400 w-5 mr-1" />
-                        </button>
-                        <button
-                          type="button"
-                          className="p-2 bg-white rounded shadow"
-                          data-bs-toggle="modal"
-                          data-bs-target="#"
-                          // onClick={() =>
-                          //   // eslint-disable-next-line no-underscore-dangle
-                          //   // SetDeleteData(item._id, item.name)
-                          // }
-                        >
-                          <DeleteIcon classList="fill-red-400 w-5" />
-                        </button>
+                      {item.status === "pending" ? (
+                        <td className="text-center col-span-2 font-Lato text-base font-semibold text-yellow-400 capitalize">
+                          {item.status}
+                        </td>
+                      ) : item.status === "available" ? (
+                        <td className="text-center col-span-2 font-Lato text-base font-semibold text-green-600 capitalize">
+                          {item.status}
+                        </td>
+                      ) : (
+                        <td className="text-center col-span-2 font-Lato text-base font-semibold text-red-600 capitalize">
+                          {item.status}
+                        </td>
+                      )}
+                      <td className="text-center flex flex-row items-center justify-end">
+                        {item.status !== "unavailable" ? (
+                          <button
+                            type="button"
+                            className="p-2 bg-white rounded shadow"
+                            data-bs-toggle="modal"
+                            data-bs-target="#"
+                            // onClick={() =>
+                            //   // eslint-disable-next-line no-underscore-dangle
+                            //   // SetDeleteData(item._id, item.name)
+                            // }
+                          >
+                            <DeleteIcon classList="fill-red-400 w-5" />
+                          </button>
+                        ) : (
+                          <div className="text-center flex flex-row items-center justify-center">
+                            <button
+                              type="button"
+                              className="p-2 bg-white rounded shadow mr-5"
+                            >
+                              <EditdIcon classList="fill-green-400 w-5 mr-1" />
+                            </button>
+                            <button
+                              type="button"
+                              className="p-2 bg-white rounded shadow"
+                              data-bs-toggle="modal"
+                              data-bs-target="#"
+                              // onClick={() =>
+                              //   // eslint-disable-next-line no-underscore-dangle
+                              //   // SetDeleteData(item._id, item.name)
+                              // }
+                            >
+                              <DeleteIcon classList="fill-red-400 w-5" />
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))

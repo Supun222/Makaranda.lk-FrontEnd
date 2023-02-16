@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../Utils/Abstract/Typography.scss";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { logout, selectUser } from "../../Features/userSlice";
 import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
@@ -14,10 +15,32 @@ function MainHeader() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+  const [UserRole, setUserRole] = useState("");
+  const [userID, setUserId] = useState("");
+  const [logged, setLogged] = useState(false);
+
   const logOut = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
+
+  useEffect(() => {
+    if (user) {
+      let users = {
+        userID: String,
+        role: String,
+        token: String,
+        email: String,
+        username: String,
+        loggedIn: Boolean,
+      };
+      users = user;
+      setUserRole(users.role);
+      setUserId(users.userID);
+      setLogged(user.loggedIn);
+      console.log(userID);
+    }
+  }, []);
 
   return (
     <main className="bg-gradient-to-b from-tertary h-60">
@@ -52,13 +75,19 @@ function MainHeader() {
                 data-bs-toggle="modal"
                 data-bs-target="#bookingList"
               >
-                <ChatIcon classList="h-3 md:h-10 fill-white" />
-                <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
-                  Bookings
-                </p>
+                {!logged ? (
+                  <div className="flex flex-row items-center">
+                    <ChatIcon classList="h-3 md:h-10 fill-white" />
+                    <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
+                      Bookings
+                    </p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </button>
             </div>
-            <Booking />
+            {UserRole === "VISITOR" ? <Booking /> : <Booking />}
             <div>
               <div>
                 {user ? (
