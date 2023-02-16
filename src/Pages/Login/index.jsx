@@ -37,7 +37,22 @@ function Login() {
           loggedIn: true,
         })
       );
-      console.log(response.data);
+      let users = {
+        userID: String,
+        role: String,
+        token: String,
+        email: String,
+        username: String,
+        loggedIn: Boolean,
+      };
+      users = {
+        userID: response.data.userID,
+        username: response.data.username,
+        token: response.data.token,
+        role: response.data.role,
+        loggedIn: true,
+      };
+      localStorage.setItem("user_details", JSON.stringify(users));
       setTimeout(navigate("/"), 3000);
       toast.success("Successfully logged in");
     } catch (err) {

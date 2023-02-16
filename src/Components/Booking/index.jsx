@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
 import moment from "moment";
@@ -6,29 +7,48 @@ import axios from "../../axios";
 import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
 import EditdIcon from "../../Assets/Icons/Svgs/Edit";
 import { selectUser } from "../../Features/userSlice";
+import ResetIcon from "../../Assets/Icons/Svgs/Reset";
 
+// eslint-disable-next-line react/prop-types
 function Booking() {
-  const [profileID, setProfileID] = useState("635d23275085b27bbc7a4473");
+  const [profileID, setProfileID] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [bookingID, setBookingID] = useState("");
+  const [chanegSet, setChanegSet] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState();
   const user = useSelector(selectUser);
 
   const getBookings = async () => {
     try {
-      setProfileID("635d23275085b27bbc7a4473");
+      console.log(bookingStatus);
       await axios
         .get(`/booking/service_receiver=${profileID}`)
         .then((res) => setBookings(res.data))
         .catch((err) => console.log(err));
     } catch (err) {
-      console.log(user);
+      console.log(err);
     }
   };
 
+  // const postBooking = async () => {
+  //   try {
+  //     await axios.put(`/booking/id:${bookingID}`);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   useEffect(() => {
-    setProfileID("635d23275085b27bbc7a4473");
+    const users = JSON.parse(localStorage.getItem("user_details"));
+    setProfileID(users.userID);
     getBookings();
-    console.log(bookings);
   }, []);
+
+  useEffect(() => {
+    setBookingID(user);
+    getBookings();
+    console.log(bookingID);
+  }, [chanegSet]);
 
   return (
     <div
@@ -41,10 +61,17 @@ function Booking() {
       <div className="modal-dialog relative pointer-events-none w-auto">
         <div className="modal-content border-none shadow-lg relative flex flex-col w-[70rem] pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
           <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md w-full">
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center justify-between">
               <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500">
                 Booking Display
               </h2>
+              <button
+                type="button"
+                onClick={() => setChanegSet(!chanegSet)}
+                className="ml-5"
+              >
+                <ResetIcon classList="w-5 text-gray-500" />
+              </button>
             </div>
           </div>
           <div className="modal-body relative p-4">
@@ -52,7 +79,7 @@ function Booking() {
               <thead className="bg-slate-100 rounded">
                 <tr className="grid grid-cols-11 items-center p-3">
                   <th className="text-start">#</th>
-                  <th className="text-center col-span-3">Customer Name</th>
+                  <th className="text-center col-span-3">Service Name</th>
                   <th className="text-center col-span-2">Package name</th>
                   <th className="text-center col-span-2">Booking date</th>
                   <th className="text-center col-span-2">Status</th>
@@ -64,7 +91,6 @@ function Booking() {
                   bookings.map((item, no) => (
                     <tr
                       className="grid grid-cols-11 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
-                      // eslint-disable-next-line no-underscore-dangle
                       key={item._id}
                     >
                       <td className="text-start font-Lato text-base font-semibold text-gray-600">
@@ -111,6 +137,10 @@ function Booking() {
                             <button
                               type="button"
                               className="p-2 bg-white rounded shadow mr-5"
+                              onClick={() => {
+                                setBookingStatus(item.status);
+                                setBookingID(item._id);
+                              }}
                             >
                               <EditdIcon classList="fill-green-400 w-5 mr-1" />
                             </button>

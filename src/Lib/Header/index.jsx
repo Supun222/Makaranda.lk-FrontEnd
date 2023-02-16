@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Link } from "react-router-dom";
 import "../../Utils/Abstract/Typography.scss";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +11,7 @@ import LocationIcon from "../../Assets/Icons/Svgs/Location";
 import SearchIcon from "../../Assets/Icons/Svgs/Search";
 import Booking from "../../Components/Booking";
 import LogOutIcon from "../../Assets/Icons/Svgs/LogOut";
+import ServiceProviderBooking from "../../Components/Booking/serviceProvider";
 
 function MainHeader() {
   const user = useSelector(selectUser);
@@ -37,7 +39,7 @@ function MainHeader() {
       users = user;
       setUserRole(users.role);
       setUserId(users.userID);
-      setLogged(user.loggedIn);
+      setLogged(users.loggedIn);
       console.log(userID);
     }
   }, []);
@@ -75,7 +77,7 @@ function MainHeader() {
                 data-bs-toggle="modal"
                 data-bs-target="#bookingList"
               >
-                {!logged ? (
+                {logged ? (
                   <div className="flex flex-row items-center">
                     <ChatIcon classList="h-3 md:h-10 fill-white" />
                     <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
@@ -87,7 +89,13 @@ function MainHeader() {
                 )}
               </button>
             </div>
-            {UserRole === "VISITOR" ? <Booking /> : <Booking />}
+            {UserRole === "VISITOR" && logged === true ? (
+              <Booking />
+            ) : UserRole === "SERVICE_PROVIDER" && logged === true ? (
+              <ServiceProviderBooking />
+            ) : (
+              ""
+            )}
             <div>
               <div>
                 {user ? (
