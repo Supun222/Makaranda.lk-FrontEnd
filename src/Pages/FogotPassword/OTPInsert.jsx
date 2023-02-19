@@ -1,39 +1,48 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import OtpInput from "react-otp-input";
 import MakarandaLogo from "../../Assets/Icons/Makaranda.lk.png";
 import slide1 from "../../Assets/Images/loginOnboard/slide1.png";
 import axios from "../../axios";
 
-function ForgotPassword() {
+function OTPInsert() {
+  const [OTP, setOTP] = useState();
   const [email, setEmail] = useState();
-  const navigate = useNavigate();
 
-  const SendOTP = async () => {
+  useEffect(() => {
+    setEmail(JSON.parse(localStorage.getItem("resetEmail")));
+  }, []);
+
+  const VerifyOTP = async () => {
     try {
-      const response = await axios.post("/OTP/new", JSON.stringify({ email }), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axios.put(
+        "/OTP/verify",
+        JSON.stringify({ email, OTPPass: OTP }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       console.log(response);
-      localStorage.setItem("resetEmail", JSON.stringify(email));
-      setTimeout(navigate("/passwrod/verify"), 3000);
-      toast.success("Successfully logged in");
     } catch (err) {
       // console.log(JSON.stringify(err.response?.status));
       if (!err.response) {
         toast.error("Something went wronggg");
       } else if (err.response?.status === 404) {
-        toast.error(err.response?.data.errors);
-      } else if (err.response?.status === 400) {
-        toast.error(err.response?.data.errors);
+        toast.error(err.response?.data.message);
+      } else if (err.response?.status === 409) {
+        toast.error(err.response?.data.message);
       } else if (err.response?.status === 500) {
-        toast.error(err.response?.data.errors);
+        toast.error(err.response?.data.message);
       } else {
         toast.error("Something went wrong");
       }
     }
   };
+
+  useEffect(() => {
+    console.log(OTP);
+  }, [OTP]);
 
   return (
     <div className="flex justify-center items-center h-screen bg-quatery p-5">
@@ -53,29 +62,35 @@ function ForgotPassword() {
               Password recover password
             </h4>
             <form action="submit" className="mt-4 mx-auto">
+              <p className="font-Lato font-medium text-secondaryText text-sm mb-3 w-full">
+                OTP number has sent to the {email}
+              </p>
               <div className="relative z-0 mb-6 w-full group">
-                <input
-                  type="email"
-                  name="floating_email"
-                  id="floating_email"
-                  className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
                 <label
                   htmlFor="floating_email"
-                  className="font-Lato peer-focus:font-medium absolute text-sm text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="text-gray-500 text-lg font-Lato"
                 >
-                  Enter you email address
+                  Enter OTP number
                 </label>
+                <OtpInput
+                  value={OTP}
+                  onChange={setOTP}
+                  focusStyle
+                  numInputs={6}
+                  containerStyle="flex justify-around mt-4"
+                  inputStyle={{
+                    width: "2.5rem",
+                    height: "2.5rem",
+                    fontSize: "1rem",
+                    borderRadius: 4,
+                    border: "2px solid rgba(0,0,0,0.3)",
+                  }}
+                />
               </div>
               <button
                 type="button"
-                className="font-Lato font-medium rounded-md bg-primary pl-3 pr-3 ml-3 mt-3 md:w-52 xl:w-60 pt-0.5 pb-0.5 text-gray-100 hover:text-amber-50 border-2 border-primary hover:border-primary hover:bg-amber-600 hover:bg-tran transition-all hover:transition-all hover:ease-in-out hover:delay-50"
-                onClick={SendOTP}
+                className="font-Lato font-medium rounded-md bg-primary pl-3 pr-3 md:w-52 xl:w-full pt-0.5 pb-0.5 text-gray-100 hover:text-amber-50 border-2 border-primary hover:border-primary hover:bg-amber-600 hover:bg-tran transition-all hover:transition-all hover:ease-in-out hover:delay-50"
+                onClick={VerifyOTP}
               >
                 Enter
               </button>
@@ -106,4 +121,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default OTPInsert;

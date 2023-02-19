@@ -20,6 +20,7 @@ import FilterPackages from "./Components/FilterPackages";
 import ProfileDetails from "./Pages/SignUp/ProfileDetails";
 import FinalPage from "./Pages/SignUp/FinalPage";
 import ForgotPassword from "./Pages/FogotPassword";
+import OTPInsert from "./Pages/FogotPassword/OTPInsert";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/password/reset" element={<ForgotPassword />} />
+        <Route path="/passwrod/verify" element={<OTPInsert />} />
         <Route path="/user" element={<SignUp />}>
           <Route path="/user/visitor/new" element={<VisitorReg />} />
           <Route path="/user/Service/new" element={<ServiceProviderReg />} />
