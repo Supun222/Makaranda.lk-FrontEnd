@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import OtpInput from "react-otp-input";
@@ -9,6 +9,7 @@ import axios from "../../axios";
 function OTPInsert() {
   const [OTP, setOTP] = useState();
   const [email, setEmail] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setEmail(JSON.parse(localStorage.getItem("resetEmail")));
@@ -16,14 +17,10 @@ function OTPInsert() {
 
   const VerifyOTP = async () => {
     try {
-      const response = await axios.put(
-        "/OTP/verify",
-        JSON.stringify({ email, OTPPass: OTP }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(response);
+      await axios.put("/OTP/verify", JSON.stringify({ email, OTPPass: OTP }), {
+        headers: { "Content-Type": "application/json" },
+      });
+      navigate("/passwrod/recover");
     } catch (err) {
       // console.log(JSON.stringify(err.response?.status));
       if (!err.response) {

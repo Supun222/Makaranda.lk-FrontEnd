@@ -11,11 +11,10 @@ function ForgotPassword() {
 
   const SendOTP = async () => {
     try {
-      const response = await axios.post("/OTP/new", JSON.stringify({ email }), {
+      await axios.post("/OTP/new", JSON.stringify({ email }), {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      console.log(response);
       localStorage.setItem("resetEmail", JSON.stringify(email));
       setTimeout(navigate("/passwrod/verify"), 3000);
       toast.success("Successfully logged in");
