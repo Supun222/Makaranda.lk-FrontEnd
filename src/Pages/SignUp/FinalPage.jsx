@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
 function FinalPage() {
@@ -9,6 +10,7 @@ function FinalPage() {
   const [membership, setMembership] = useState([]);
   const [index, setIndex] = useState();
   const [selectedMembership, setSelectedMembership] = useState();
+  const navigate = useNavigate();
 
   const getAllMembership = async () => {
     axios
@@ -89,9 +91,11 @@ function FinalPage() {
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
-        .then((response) => console.log(response))
+        .then(() => {
+          toast.success("registration is successfull");
+          setTimeout(navigate("/"), 3000);
+        })
         .catch((err) => console.log(err));
-      toast.success("registration is successfull");
     } catch (err) {
       console.log(JSON.stringify(err.response?.data));
       if (!err.response) {

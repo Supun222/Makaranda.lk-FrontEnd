@@ -49,8 +49,10 @@ function ServiceProviderBooking() {
   }, []);
 
   useEffect(() => {
-    setProfileID(user.userID);
-    getBookings();
+    if (user) {
+      setProfileID(user.userID);
+      getBookings();
+    }
   }, [chanegSet]);
 
   useEffect(() => {

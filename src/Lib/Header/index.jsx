@@ -8,10 +8,10 @@ import Makarandalogo from "../../Assets/Icons/Makaranda.lk.png";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 import UserIcon from "../../Assets/Icons/Svgs/User";
 import LocationIcon from "../../Assets/Icons/Svgs/Location";
-import SearchIcon from "../../Assets/Icons/Svgs/Search";
 import Booking from "../../Components/Booking";
 import LogOutIcon from "../../Assets/Icons/Svgs/LogOut";
 import ServiceProviderBooking from "../../Components/Booking/serviceProvider";
+import SearchProfile from "../../Components/SearchProfile";
 
 function MainHeader() {
   const user = useSelector(selectUser);
@@ -122,31 +122,17 @@ function MainHeader() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-5 md:mt-3">
+        <div className="flex flex-col justify-center mt-5 md:mt-3 mx-auto w-fit">
           <button
             type="button"
-            className="flex flex-row items-center bg-primary rounded-2xl pl-3 pr-4 pt-1 pb-1"
+            className="flex flex-row items-center bg-primary rounded-2xl pl-3 pr-4 pt-1 pb-1 w-fit mx-auto"
           >
             <LocationIcon classList="w-5 fill-white" />
             <p className="font-Lato ml-2 text-white font-medium text-">
               All fo Sri Lanka
             </p>
           </button>
-        </div>
-        <div className="flex justify-center mt-5">
-          <div className="flex flex-row w-72 md:w-96 h-10 bg-white rounded-3xl items-center justify-between">
-            <input
-              type="text"
-              placeholder="What are you looking for ?"
-              className="font-Lato tracking-wide w-60 md:w-80  ml-4 placeholder-gray-500 border border-white focus:outline-none text-gray-600 focus:ring-0 focus:ring-offset-0 focus:border-0"
-            />
-            <button
-              type="button"
-              className="rounded-full bg-primary w-8 h-8 mr-1 hover:bg-amber-600"
-            >
-              <SearchIcon />
-            </button>
-          </div>
+          <SearchProfile />
         </div>
       </div>
     </main>

@@ -17,44 +17,47 @@ function Login() {
 
   const dispatch = useDispatch();
 
-  const handleLogin = async (e) => {
+  function ridect() {
+    navigate("/");
+  }
+
+  const handleLogin = (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "/user/login",
-        JSON.stringify({ email, password }),
-        {
+      axios
+        .post("/user/login", JSON.stringify({ email, password }), {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
-      );
-      dispatch(
-        login({
-          userID: response.data.userID,
-          username: response.data.username,
-          token: response.data.token,
-          role: response.data.role,
-          loggedIn: true,
         })
-      );
-      let users = {
-        userID: String,
-        role: String,
-        token: String,
-        email: String,
-        username: String,
-        loggedIn: Boolean,
-      };
-      users = {
-        userID: response.data.userID,
-        username: response.data.username,
-        token: response.data.token,
-        role: response.data.role,
-        loggedIn: true,
-      };
-      localStorage.setItem("user_details", JSON.stringify(users));
-      setTimeout(navigate("/"), 3000);
-      toast.success("Successfully logged in");
+        .then((response) => {
+          dispatch(
+            login({
+              userID: response.data.userID,
+              username: response.data.username,
+              token: response.data.token,
+              role: response.data.role,
+              loggedIn: true,
+            })
+          );
+          let users = {
+            userID: String,
+            role: String,
+            token: String,
+            email: String,
+            username: String,
+            loggedIn: Boolean,
+          };
+          users = {
+            userID: response.data.userID,
+            username: response.data.username,
+            token: response.data.token,
+            role: response.data.role,
+            loggedIn: true,
+          };
+          localStorage.setItem("user_details", JSON.stringify(users));
+          toast.success("Login successfull");
+          setTimeout(ridect, 5000);
+        });
     } catch (err) {
       console.log(JSON.stringify(err.response?.data.errors));
       if (!err.response) {
@@ -69,6 +72,10 @@ function Login() {
         toast.error("Something went wrong");
       }
     }
+  };
+
+  const loggedInto = () => {
+    return handleLogin;
   };
 
   return (
@@ -92,7 +99,7 @@ function Login() {
               <form
                 action="submit"
                 className="mt-4 mx-auto"
-                onSubmit={(e) => handleLogin(e)}
+                onSubmit={loggedInto()}
                 ref={form}
               >
                 <div className="relative z-0 mb-6 w-full group">

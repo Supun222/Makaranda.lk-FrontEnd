@@ -39,15 +39,17 @@ function Booking() {
   // };
 
   useEffect(() => {
-    const users = JSON.parse(localStorage.getItem("user_details"));
-    setProfileID(users.userID);
-    getBookings();
+    // getBookings();
   }, []);
 
   useEffect(() => {
-    setBookingID(user);
-    getBookings();
-    console.log(bookingID);
+    if (user) {
+      setProfileID(user.userID);
+      // setProfileID(users.userID);
+      getBookings();
+    }
+    console.log(user.userID);
+    console.log(user.userID);
   }, [chanegSet]);
 
   return (
@@ -122,13 +124,11 @@ function Booking() {
                         {item.status !== "unavailable" ? (
                           <button
                             type="button"
+                            value={bookingID}
                             className="p-2 bg-white rounded shadow"
                             data-bs-toggle="modal"
                             data-bs-target="#"
-                            // onClick={() =>
-                            //   // eslint-disable-next-line no-underscore-dangle
-                            //   // SetDeleteData(item._id, item.name)
-                            // }
+                            onClick={(e) => setBookingID(e.target.value)}
                           >
                             <DeleteIcon classList="fill-red-400 w-5" />
                           </button>

@@ -19,7 +19,9 @@ function Packages({ items }) {
   const { id } = useParams();
 
   useEffect(() => {
-    setMadeBy(user.userID);
+    if (user) {
+      setMadeBy(user.userID);
+    }
     console.log(id);
     console.log(madeBy);
     console.log(bookDate);
