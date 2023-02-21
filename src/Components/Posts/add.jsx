@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import axios from "../../axios/index";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+import { selectUser } from "../../Features/userSlice";
 
 function AddPosts() {
   const [profileID, setProfileID] = useState();
   const [caption, getCaption] = useState();
   const [photos, setPhotos] = useState([]);
+  const user = useSelector(selectUser);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setProfileID(user.userID);
+    }
+  }, []);
 
   const handleFile = (e) => {
     const newFiles = [];
@@ -14,39 +28,49 @@ function AddPosts() {
       newFiles.push(e.target.files[i]);
     }
     setPhotos(newFiles);
-    setProfileID("635b6973ba4a00febf671cd9");
   };
 
   const sendPost = async () => {
-    console.log(photos);
-    console.log(profileID);
-    console.log(caption);
-    // const bodyFormData = new FormData();
-    // photos.forEach((file) => {
-    //   bodyFormData.append("file", file);
-    // });
-    // bodyFormData.append("profileId", profileID);
-    // bodyFormData.append("decription", caption);
-    // await axios({
-    //   method: "post",
-    //   url: "http://localhost:8080/api/post/post",
-    //   data: bodyFormData,
-    //   headers: { "Content-Type": "multipart/form-data" },
-    // })
-    //   .then((response) => console.log(response))
-    //   .catch((err) => console.log(err));
+    try {
+      const bodyFormData = new FormData();
+      photos.forEach((file) => {
+        bodyFormData.append("file", file);
+      });
+      bodyFormData.append("profileId", profileID);
+      bodyFormData.append("decription", caption);
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/api/post/post",
+        data: bodyFormData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then(() => {
+          toast.success("Successfully posted...!");
+          setTimeout(() => {
+            navigate(`/profile/index=${id}`);
+          }, 2000);
+        })
+        .catch((error) => console.log(error));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <div className="flex flex-row items-center justify-center mb-3 bg-gray-50 p-2 rounded">
-      <button
-        type="button"
-        className="bg-blue-500 p-2 rounded-xl text-white shadow-md hover:opacity-70"
-        data-bs-toggle="modal"
-        data-bs-target="#addnewpost"
-      >
-        Add your post here
-      </button>
+      {id === profileID ? (
+        <button
+          type="button"
+          className="bg-blue-500 p-2 rounded-xl text-white shadow-md hover:opacity-70"
+          data-bs-toggle="modal"
+          data-bs-target="#addnewpost"
+        >
+          Add your post here
+        </button>
+      ) : (
+        <div />
+      )}
+
       <div
         className="modal fade fixed top-60 -left-52 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="addnewpost"
@@ -69,7 +93,7 @@ function AddPosts() {
               </div>
             </div>
             <div className="modal-body relative p-4">
-              <form onSubmit={sendPost} className="">
+              <form className="">
                 <div className="flex  flex-col justify-center">
                   <div className="flex flex-col justify-center">
                     <label htmlFor="email" className="font-Lato tracking-wide">
@@ -109,8 +133,10 @@ function AddPosts() {
                   Close
                 </button>
                 <button
-                  type="submit"
+                  type="button"
                   className="p-2 pl-6 pr-6 bg-blue-600  text-white font-medium leading-tight uppercase rounded shadow-md  hover:bg-blue-700 hover:shadow-lg  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                  data-bs-dismiss="modal"
+                  onClick={sendPost}
                 >
                   Post
                 </button>
@@ -119,6 +145,7 @@ function AddPosts() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

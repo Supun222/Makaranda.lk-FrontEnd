@@ -1,5 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import React from "react";
+import { Link } from "react-router-dom";
 import DancingIcon from "../../../Assets/Icons/DancingGroups.png";
 
 // eslint-disable-next-line react/prop-types
@@ -9,15 +10,15 @@ function Breadcrums({ serviceType, profileName }) {
       <nav className="rounded-md w-full mb-3">
         <ol className="list-reset flex items-center">
           <li>
-            <a
-              href="/timeline"
+            <Link
+              to={`/timeline/${serviceType}/all`}
               className="text-gray-600 hover:text-gray-700 flex flex-row items-center"
             >
               <img src={DancingIcon} alt="dancing" className="w-20" />
               <h1 className="font-Lato font-semibold text-xl capitalize">
                 {serviceType} category
               </h1>
-            </a>
+            </Link>
           </li>
           <li>
             <span className="font-Lato font-semibold text-xl mx-2">/</span>

@@ -46,7 +46,7 @@ function TimelineHeader() {
               <div className="flex flex-row items-center ml-5 mr-2">
                 <ChatIcon classList="h-3 md:h-10 fill-white" />
                 <p className="font-Lato ml-3 mr-8 text-primary font-medium hidden md:block">
-                  Chat
+                  Bookings
                 </p>
               </div>
             </Link>
