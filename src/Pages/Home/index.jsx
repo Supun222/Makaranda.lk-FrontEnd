@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainHeader from "../../Lib/Header/index";
 import BrowserItemsByCategory from "../../Components/ItemCategory";
 import StartMakingMoneyIcon from "../../Assets/Icons/StartMakingMoney.png";
@@ -63,15 +64,15 @@ function Home() {
                 Looking for wedding packages?
                 <br /> Get packages with your own budgets !
               </p>
-              <button
-                type="button"
+              <Link
+                to="/package_bundle/dance"
                 className="flex flex-row items-center bg-sky-400 w-fit rounded-full pl-2 pr-2 pt-1/2 pb-1/2 mt-1"
               >
                 <ExploreIcon />
                 <p className="max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
                   Explore more
                 </p>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

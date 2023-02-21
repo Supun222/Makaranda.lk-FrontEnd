@@ -52,7 +52,7 @@ function FilterData({ AvailablePackages }) {
                   alt="profile"
                   className="w-10 rounded-full"
                 />
-                <p className="font-Lato text-gray-600 font-semibold text-lg tracking-wide ml-2">
+                <p className="font-Lato text-gray-600 font-semibold text-lg tracking-wide ml-2 capitalize">
                   {item.profile_name}
                 </p>
               </div>

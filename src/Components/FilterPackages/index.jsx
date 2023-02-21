@@ -31,18 +31,21 @@ function FilterPackages() {
       data.map((item) =>
         // eslint-disable-next-line array-callback-return
         item.packages.map((pak, no) => {
-          if (pak.price >= minprice && pak.price <= currentPrice) {
+          if (
+            pak.packagePrice >= minprice &&
+            pak.packagePrice <= currentPrice
+          ) {
             // eslint-disable-next-line prefer-const
             let tempPack = {
               // eslint-disable-next-line no-underscore-dangle
               key_id: item._id + no,
               // eslint-disable-next-line no-underscore-dangle
-              profile_id: item._id,
+              // profile_id: item._id,
               profile_name: item.username,
-              pro_pic: item.propic,
-              package_name: pak.package_name,
-              package_details: pak.details,
-              price: pak.price,
+              pro_pic: item.profile_pic,
+              package_name: pak.packageName,
+              package_details: pak.packageDetails,
+              price: pak.packagePrice,
             };
             seAvailablePackagest((AvailablePackage) => [
               ...AvailablePackage,

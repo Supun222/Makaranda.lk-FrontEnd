@@ -7,7 +7,7 @@ import axios from "../../axios";
 import PackageIcon from "../../Assets/Icons/Svgs/Package";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import { selectUser } from "../../Features/userSlice";
-// import Package from "../../Resources/packages.json";
+import ResetIcon from "../../Assets/Icons/Svgs/Reset";
 
 function Packages() {
   const [bookDate, setBookDate] = useState();
@@ -26,22 +26,31 @@ function Packages() {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [details, setDetails] = useState();
+  const [profilename, setProfilename] = useState();
+  const [profilePic, setProfilePic] = useState();
 
   const user = useSelector(selectUser);
   const { id } = useParams();
+
+  const loadPackages = async () => {
+    try {
+      console.log("reload");
+      axios.get(`/user/user/${id}`).then((res) => {
+        setOldpacks(res.data.packages);
+        setProfilename(res.data.username);
+        setProfilePic(res.data.profile_pic);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (user) {
       setMadeBy(user.userID);
       setOwner(user.userID);
     }
-    try {
-      axios
-        .get(`/user/user/${id}`)
-        .then((res) => setOldpacks(res.data.packages));
-    } catch (err) {
-      console.log(err);
-    }
+    loadPackages();
   }, []);
 
   useEffect(() => {
@@ -129,13 +138,18 @@ function Packages() {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <div className="flex flex-row items-center">
                 <img
-                  src={ProfilePic}
+                  src={profilePic}
                   alt="profile"
                   className="w-12 rounded-full"
                 />
-                <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500">
-                  Thathari Dancing Crew Packages
-                </h2>
+                <div className="flex flex-row justify-start items-center">
+                  <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500 capitalize">
+                    {profilename} Packages
+                  </h2>
+                  <button type="button" onClick={loadPackages}>
+                    <ResetIcon classList="w-6 ml-5" />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="modal-body relative p-4">
@@ -230,12 +244,12 @@ function Packages() {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <div className="flex flex-row items-center">
                 <img
-                  src={ProfilePic}
+                  src={profilePic}
                   alt="profile"
                   className="w-12 rounded-full"
                 />
-                <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500">
-                  Thathari Dancing Crew Packages - Booking
+                <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500 capitalize">
+                  {profilename} - Booking
                 </h2>
               </div>
             </div>
@@ -299,7 +313,7 @@ function Packages() {
                   className="w-12 rounded-full"
                 />
                 <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500">
-                  Thathari Dancing Crew Packages - Booking
+                  {profilename} - Booking
                 </h2>
               </div>
             </div>
