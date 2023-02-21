@@ -14,7 +14,6 @@ function Profile() {
   const [profileName, setProfileName] = useState();
   const [profilePic, setProfilePic] = useState();
   const [coverPhoto, setCoverPhoto] = useState();
-  const [packages, setPackages] = useState();
   const [Locations, setLocations] = useState();
   const [ServiceType, setServiceType] = useState();
   const [membership, setMembership] = useState();
@@ -29,7 +28,6 @@ function Profile() {
       setProfileName(res.data.username);
       setProfilePic(res.data.profile_pic);
       setCoverPhoto(res.data.cover_pic);
-      setPackages(res.data.packages);
       setMembership(res.data.membership.name);
       setServiceType(res.data.service_type);
       setMobile(res.data.social_details.mobile);
@@ -58,7 +56,6 @@ function Profile() {
           ProfilePic={profilePic}
           CoverPic={coverPhoto}
           Membership={membership}
-          packs={packages}
           servicetype={ServiceType}
         />
         <div className="grid grid-cols-5 h-fit gap-1 lg:gap-2">

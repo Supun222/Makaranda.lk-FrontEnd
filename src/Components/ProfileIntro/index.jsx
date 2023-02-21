@@ -12,7 +12,6 @@ function ProfileIntro({
   ProfilePic,
   CoverPic,
   Membership,
-  packs,
   servicetype,
 }) {
   return (
@@ -60,7 +59,7 @@ function ProfileIntro({
             <ChatIcon classList="w-5 fill-black mr-2" />
             <p>Message</p>
           </button>
-          <Packages items={packs} />
+          <Packages />
         </div>
       </div>
     </div>

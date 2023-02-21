@@ -56,7 +56,7 @@ function Login() {
           };
           localStorage.setItem("user_details", JSON.stringify(users));
           toast.success("Login successfull");
-          setTimeout(ridect, 5000);
+          setTimeout(ridect, 3000);
         });
     } catch (err) {
       console.log(JSON.stringify(err.response?.data.errors));
