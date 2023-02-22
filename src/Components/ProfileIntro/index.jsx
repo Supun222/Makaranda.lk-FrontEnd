@@ -57,7 +57,7 @@ function ProfileIntro({
             className="p-2 bg-slate-200 rounded-md mr-4 flex flex-row hover:opacity-80 items-center leading-tight"
           >
             <ChatIcon classList="w-5 fill-black mr-2" />
-            <p>Message</p>
+            <p>Bookings</p>
           </button>
           <Packages />
         </div>

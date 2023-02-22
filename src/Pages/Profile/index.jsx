@@ -36,7 +36,6 @@ function Profile() {
       setYoutube(res.data.social_details.youtube);
       setInstagram(res.data.social_details.instagram);
       setFacebook(res.data.social_details.facebook);
-      // setEmail(res.data.email);
     });
   };
 
@@ -69,7 +68,7 @@ function Profile() {
             description={Decription}
           />
           <div className="col-span-3 ">
-            <AddPosts />
+            <AddPosts ProName={profileName} ProPic={profilePic} />
             <Outlet context={[profileID]} />
           </div>
         </div>

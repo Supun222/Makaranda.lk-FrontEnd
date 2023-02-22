@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
+// import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import { selectUser } from "../../Features/userSlice";
+import AddPackage from "../Packages/add";
 
-function AddPosts() {
+// eslint-disable-next-line react/prop-types
+function AddPosts({ ProName, ProPic }) {
   const [profileID, setProfileID] = useState();
   const [caption, getCaption] = useState();
   const [photos, setPhotos] = useState([]);
@@ -59,14 +61,24 @@ function AddPosts() {
   return (
     <div className="flex flex-row items-center justify-center mb-3 bg-gray-50 p-2 rounded">
       {id === profileID ? (
-        <button
-          type="button"
-          className="bg-blue-500 p-2 rounded-xl text-white shadow-md hover:opacity-70"
-          data-bs-toggle="modal"
-          data-bs-target="#addnewpost"
-        >
-          Add your post here
-        </button>
+        <div className="flex flex-row items-center justify-start w-full">
+          <button
+            type="button"
+            className="bg-blue-500 p-2 rounded-xl text-white shadow-md hover:opacity-70"
+            data-bs-toggle="modal"
+            data-bs-target="#addnewpost"
+          >
+            Add new post
+          </button>
+          <button
+            type="button"
+            className="bg-blue-500 p-2 rounded-xl text-white shadow-md hover:opacity-70 ml-5"
+            data-bs-toggle="modal"
+            data-bs-target="#AddPackage"
+          >
+            Add new Package
+          </button>
+        </div>
       ) : (
         <div />
       )}
@@ -82,13 +94,9 @@ function AddPosts() {
           <div className="modal-content border-none shadow-lg relative flex flex-col w-[50rem] pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <div className="flex flex-row items-center">
-                <img
-                  src={ProfilePic}
-                  alt="profile"
-                  className="w-12 rounded-full"
-                />
-                <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500">
-                  Thathari Dancing Crew New Post
+                <img src={ProPic} alt="profile" className="w-12 rounded-full" />
+                <h2 className="ml-3 font-Lato text-xl font-semibold text-gray-500 capitalize">
+                  {ProName}
                 </h2>
               </div>
             </div>
@@ -145,6 +153,7 @@ function AddPosts() {
           </div>
         </div>
       </div>
+      <AddPackage ProfilePic={ProPic} profilename={ProName} />
       <ToastContainer />
     </div>
   );
