@@ -6,7 +6,7 @@ import FilterData from "../FilterData";
 
 function FilterPackages() {
   const [minprice, setMinPrice] = useState(0);
-  const [maxprice, setMaxPrice] = useState(30000);
+  const [maxprice, setMaxPrice] = useState(50000);
   const [currentPrice, setCurrentPrice] = useState(maxprice);
   const { serviceType } = useParams();
   const [changeset, SetChangeSet] = useState(false);
@@ -17,7 +17,7 @@ function FilterPackages() {
 
   const getPacks = async () => {
     setMinPrice(0);
-    setMaxPrice(30000);
+    setMaxPrice(50000);
     await axios.get(`/user/package/service_type=${serviceType}`).then((res) => {
       // console.log(res.data);
       setData(res.data);

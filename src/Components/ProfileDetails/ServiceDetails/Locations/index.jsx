@@ -5,6 +5,11 @@ import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 // eslint-disable-next-line react/prop-types
 function Locations({ places }) {
   console.log(places);
+
+  // useEffect(() => {
+
+  // }, [])
+
   const mapStyles = {
     height: "20rem",
     width: "100%",

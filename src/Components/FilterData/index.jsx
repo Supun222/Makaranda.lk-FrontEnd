@@ -61,7 +61,7 @@ function FilterData({ AvailablePackages }) {
             <div className="flex flex-col justify-center">
               <div className="flex flex-row justify-between mt-2">
                 <div className="flex flex-row items-center">
-                  <h4 className="capitalize font-Lato text-gray-500">
+                  <h4 className="capitalize font-Lato text-gray-500 w-fit">
                     packages :{" "}
                   </h4>
                   <p className="capitalize font-Lato text-yellow-400 ml-2">
@@ -69,7 +69,7 @@ function FilterData({ AvailablePackages }) {
                   </p>
                 </div>
                 <div className="flex flex-row items-center">
-                  <h4 className="capitalize font-Lato text-gray-500 mr-2">
+                  <h4 className="capitalize font-Lato text-gray-500 mr-2 w-fit">
                     Package Price :
                   </h4>
                   <p className="font-Lato text-blue-500"> {item.price} LKR</p>
@@ -77,9 +77,9 @@ function FilterData({ AvailablePackages }) {
               </div>
               <div className="mt-2 font-Lato text-gray-600 flex flex-row items-start">
                 <h4 className="capitalize font-Lato text-gray-500 mr-2">
-                  details :
+                  details:
                 </h4>
-                <p className=" font-Lato text-gray-500 mr-2">
+                <p className=" font-Lato text-gray-500 ml-5">
                   {item.package_details}
                 </p>
               </div>

@@ -22,7 +22,7 @@ function Profile() {
   const [youtube, setYoutube] = useState();
   const [instagram, setInstagram] = useState();
   const [facebook, setFacebook] = useState();
-  // const [email, setEmail] = useState();
+  const [email, setEmail] = useState();
   const getposts = async () => {
     await axios.get(`/user/user/${id}`).then((res) => {
       setProfileName(res.data.username);
@@ -36,6 +36,7 @@ function Profile() {
       setYoutube(res.data.social_details.youtube);
       setInstagram(res.data.social_details.instagram);
       setFacebook(res.data.social_details.facebook);
+      setEmail(res.data.email);
     });
   };
 
@@ -66,6 +67,7 @@ function Profile() {
             Youtube={youtube}
             Instagram={instagram}
             description={Decription}
+            email={email}
           />
           <div className="col-span-3 ">
             <AddPosts ProName={profileName} ProPic={profilePic} />

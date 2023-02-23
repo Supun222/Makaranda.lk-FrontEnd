@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -155,10 +156,10 @@ function Packages() {
             <div className="modal-body relative p-4">
               <table className="w-full flex flex-col">
                 <thead className="bg-slate-100 rounded">
-                  <tr className="grid grid-cols-6 items-center p-3">
+                  <tr className="grid grid-cols-7 items-center p-3">
                     <th className="text-start">#</th>
                     <th className="text-center">Package Name</th>
-                    <th className="text-center col-span-2">Package Details</th>
+                    <th className="text-center col-span-3">Package Details</th>
                     <th className="text-center">Price (LKR)</th>
                     <th className="text-center">Action</th>
                   </tr>
@@ -167,16 +168,16 @@ function Packages() {
                   {oldPacks && oldPacks.length > 0 ? (
                     oldPacks.map((item, no) => (
                       <tr
-                        className="grid grid-cols-6 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
+                        className="grid grid-cols-7 items-center p-3 border-b-4 border-b-slate-100 rounded-lg mt-2"
                         key={item.id}
                       >
                         <td className="text-start font-Lato text-base font-semibold text-gray-600">
                           {no + 1}
                         </td>
-                        <td className="text-center font-Lato text-base font-semibold text-gray-600 capitalize">
+                        <td className="text-start font-Lato text-base font-semibold text-gray-600 capitalize">
                           {item.packageName}
                         </td>
-                        <td className="text-center font-Lato text-base font-semibold text-gray-600 col-span-2">
+                        <td className="text-justify font-Lato text-base font-semibold text-gray-600 col-span-3">
                           {item.packageDetails}
                         </td>
                         <td className="text-center font-Lato text-base font-semibold text-gray-600">
@@ -196,13 +197,23 @@ function Packages() {
                             >
                               Edit
                             </button>
-                          ) : (
+                          ) : user ? (
                             <button
                               type="button"
                               className="p-2 pl-6 pr-6 bg-orange-600  text-white font-medium leading-tight uppercase rounded shadow-md  hover:bg-orange-700 hover:shadow-lg  focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                               data-bs-toggle="modal"
                               data-bs-target="#bookingForm"
                               onClick={() => setPackageName(item.packageName)}
+                            >
+                              Book
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              className="p-2 pl-6 pr-6 bg-slate-400  text-black font-medium leading-tight uppercase rounded shadow-md  hover:bg-gray-700 hover:shadow-lg  focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                              data-bs-toggle="modal"
+                              data-bs-target="#bookingForm"
+                              disabled
                             >
                               Book
                             </button>

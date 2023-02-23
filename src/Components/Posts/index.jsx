@@ -10,6 +10,10 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [profileIdD] = useOutletContext();
 
+  useEffect(() => {
+    setPosts([]);
+  }, []);
+
   const getPosts = () => {
     if (profileIdD) {
       setPosts([]);
@@ -22,6 +26,8 @@ function Posts() {
           })
           .catch((err) => console.log(err));
       });
+    } else {
+      setPosts([]);
     }
   };
 

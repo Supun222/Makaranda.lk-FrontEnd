@@ -14,6 +14,7 @@ function ProfileDetails({
   Facebook,
   Youtube,
   Instagram,
+  email,
 }) {
   return (
     <div className="col-span-2">
@@ -25,6 +26,7 @@ function ProfileDetails({
         mobile={Mobile}
         youtube={Youtube}
         instagram={Instagram}
+        email={email}
       />
       <Message />
     </div>
