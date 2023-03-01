@@ -17,7 +17,7 @@ function FilterPackages() {
 
   const getPacks = async () => {
     setMinPrice(0);
-    setMaxPrice(50000);
+    setMaxPrice(80000);
     await axios.get(`/user/package/service_type=${serviceType}`).then((res) => {
       // console.log(res.data);
       setData(res.data);

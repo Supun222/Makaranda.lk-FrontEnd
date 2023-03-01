@@ -18,6 +18,11 @@ function Timeline() {
   };
 
   useEffect(() => {
+    setProfileIds([]);
+  }, []);
+
+  useEffect(() => {
+    setProfileIds([]);
     getUsersIds();
     // console.log(profileID);
   }, [category]);

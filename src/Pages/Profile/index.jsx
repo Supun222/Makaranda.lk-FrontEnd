@@ -41,6 +41,10 @@ function Profile() {
   };
 
   useEffect(() => {
+    setProfileIds([]);
+  }, []);
+
+  useEffect(() => {
     if (id) {
       setProfileIds([id]);
       getposts();

@@ -22,6 +22,10 @@ function SearchProfile() {
   };
 
   useEffect(() => {
+    // setResults([]);
+  }, []);
+
+  useEffect(() => {
     setResults([]);
     getProfiles();
   }, [profile]);

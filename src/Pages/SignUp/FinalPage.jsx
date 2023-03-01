@@ -93,7 +93,9 @@ function FinalPage() {
       })
         .then(() => {
           toast.success("registration is successfull");
-          setTimeout(navigate("/"), 3000);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
         })
         .catch((err) => console.log(err));
     } catch (err) {

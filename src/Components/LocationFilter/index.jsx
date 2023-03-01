@@ -9,8 +9,8 @@ function Location() {
 
   const renderCategories = () => {
     axios
-      .get("/location/count")
-      .then((response) => setsubLocation(response.data.result));
+      .get(`/location/${category}/count`)
+      .then((response) => setsubLocation(response.data.Category));
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function Location() {
               key={item._id}
             >
               <Link
-                to={`/timeline/${category}/${item.location_name}`}
+                to={`/timeline/${category}/${item._id}`}
                 className="inline-flex mt-2"
               >
                 {item._id} <p className="text-gray-500 ml-2">({item.count})</p>
