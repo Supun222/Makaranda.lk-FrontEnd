@@ -13,18 +13,11 @@ function BrowserItemsByCategory() {
   const [serviceType, setServiceType] = useState([]);
   // const [changeSet, chan]
 
-  function getALlserviceTypes() {
-    axios
-      .get("/category/all")
-      .then((res) => setServiceType(res.data.Category))
-      .catch((err) => console.log(err));
-  }
-
-  function getUserCountbyCategory() {
-    axios(`/category/user/count`).then((res) =>
-      setCategoryWithCount(res.data.result)
-    );
-  }
+  // function getUserCountbyCategory() {
+  //   axios(`/category/user/count`).then((res) =>
+  //     setCategoryWithCount(res.data.result)
+  //   );
+  // }
 
   function combineResults() {
     console.log(CategoryWithCount);
@@ -53,13 +46,27 @@ function BrowserItemsByCategory() {
     console.log(serviceType);
   }
 
+  function getALlserviceTypes() {
+    axios
+      .get("/category/all")
+      .then((res) => {setCategoryWithOUTCount(res.data.Category)})
+      .then(() => {
+        return axios(`/category/user/count`)
+      })
+      .then(((res) =>setCategoryWithCount(res.data.result)
+      ))
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
-    console.log(serviceType);
-    setCategoryWithOUTCount([])
     getALlserviceTypes();
-    getUserCountbyCategory();
-    combineResults()
   }, []);
+
+  useEffect(() => {
+    if ( CategoryWithCount.length > 0 && CategoryWithOUTCount.length > 0) {
+      combineResults()
+    }
+  }, [CategoryWithCount, CategoryWithOUTCount])
 
   return (
     <div className="grid gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-4 md:ml-0 lg:ml-6 xl:ml-4 xl:w-11/12 h-96 overflow-y-auto md:h-auto md:overflow-y-clip mt-5">
@@ -70,7 +77,7 @@ function BrowserItemsByCategory() {
             key={item.category_name}
             className="flex flex-row items-center mt-5 ml-1 w-fit"
           >
-            <img src={item.picture} alt="itemcategory" className="w-20" />
+            <img src={item.propic} alt="itemcategory" className="w-20" />
             <div className="flex flex-col ml-2 justify-start">
               <h5 className="font-Lato max-w-[12rem] text-secondaryText capitalize">
                 {String(item.category_name).length < 20

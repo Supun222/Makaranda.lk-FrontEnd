@@ -28,6 +28,9 @@ function ProfileDetails() {
       packagePrice: packagePrice,
     };
     setPackage([...packagess, data]);
+    packageName("");
+    packageDetails("");
+    packagePrice("");
   };
 
   const sendData = () => {
@@ -63,6 +66,11 @@ function ProfileDetails() {
                 className="flex items-center ml-3 hover:opacity-80"
                 data-bs-toggle="modal"
                 data-bs-target="#AddPackage"
+                onClick={() => {
+                  packageName("");
+                  packageDetails("");
+                  packagePrice("");
+                }}
               >
                 <PlusIcon Classlist="w-10 text-orange-500" />
               </button>
@@ -247,6 +255,7 @@ function ProfileDetails() {
                     </label>
                     <input
                       type="text"
+                      value={packageName}
                       placeholder="-- enter package name --"
                       name="name"
                       className="px-3 py-1.5 text-base font-normal  text-gray-500  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:ring-orange-600 focus:ring-offset-orange-600 focus:outline-none "
@@ -262,6 +271,7 @@ function ProfileDetails() {
                       Package Details
                     </label>
                     <textarea
+                      value={packageDetails}
                       className=" form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-500  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:ring-orange-600 focus:ring-offset-orange-600 focus:outline-none "
                       id="details"
                       rows="3"
@@ -281,6 +291,7 @@ function ProfileDetails() {
                       type="number"
                       placeholder="-- enter package name --"
                       name="price"
+                      value={packagePrice}
                       className="px-3 py-1.5 text-base font-normal  text-gray-500  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:ring-orange-600 focus:ring-offset-orange-600 focus:outline-none "
                       onChange={(e) => setPackagePrice(e.target.value)}
                       required
