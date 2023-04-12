@@ -1,10 +1,10 @@
 // import { useEffect, useState } from "react";
 // import axios from "../../axios";
-import UsersIcon from "../../Assets/Icons/Svgs/Users";
 import Totalservice from "../../Assets/Images/Dashboard/total_service.jpg";
 import StarIcon from "../../Assets/Icons/Svgs/Star";
 import PostIcon from "../../Assets/Icons/Svgs/Post";
 import CategoryIcon from "../../Assets/Icons/Svgs/Category";
+import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 
 function Reports() {
   // const [totalServiceCount, setTotalServiceCount] = useState(0);
@@ -37,6 +37,18 @@ function Reports() {
         <img src={Totalservice} alt="totalservice" className="w-44 ml-2" />
       </div>
       <div className="flex flex-row items-center justify-between rounded-md bg-white w-full ml-3 pl-8 pr-8 pt-11 pb-11">
+        <div className="flex flex-row items-center bg-white rounded-md ">
+          <ChatIcon classList="w-12 bg-yellow-300 p-2 rounded-md mr-3" />
+          <div className="flex flex-col justify-start mr-2">
+            <p className="font-Lato text-lg text-gray-600 font-semibold">
+              Total Bookings
+            </p>
+            <p className="font-Lato text-lg text-yellow-400 font-semibold">
+              95
+            </p>
+          </div>
+        </div>
+        <hr className="h-14 w-0.5 bg-gray-300 mr-2 ml-2" />
         <div className="flex flex-row items-center">
           <CategoryIcon ClassList="w-12 bg-blue-400 p-2 rounded-md mr-3" />
           <div className="flex flex-col justify-start mr-2">
@@ -44,18 +56,6 @@ function Reports() {
               Total Categories
             </p>
             <p className="text-blue-500 font-Lato font-semibold text-lg">15</p>
-          </div>
-        </div>
-        <hr className="h-14 w-0.5 bg-gray-300 mr-2 ml-2" />
-        <div className="flex flex-row items-center bg-white rounded-md ">
-          <UsersIcon classList="w-12 bg-yellow-300 p-2 rounded-md mr-3" />
-          <div className="flex flex-col justify-start mr-2">
-            <p className="font-Lato text-lg text-gray-600 font-semibold">
-              Total Subcategories
-            </p>
-            <p className="font-Lato text-lg text-yellow-400 font-semibold">
-              95
-            </p>
           </div>
         </div>
         <hr className="h-14 w-0.5 bg-gray-300 mr-2 ml-2" />

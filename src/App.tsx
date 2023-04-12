@@ -22,6 +22,7 @@ import FinalPage from "./Pages/SignUp/FinalPage";
 import ForgotPassword from "./Pages/FogotPassword";
 import OTPInsert from "./Pages/FogotPassword/OTPInsert";
 import PasswordReset from "./Pages/FogotPassword/PassswordReset";
+import AdminBooking from "./Components/AdminBooking";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
           <Route path="/admin/membership/:id" element={<Edit />} />
           <Route path="/admin/location" element={<Location />} />
           <Route path="/admin/category" element={<Categories />} />
+          <Route path="/admin/booking" element={<AdminBooking />} />
         </Route>
         <Route path="/package_bundle" element={<WeddingPackages />}>
           <Route

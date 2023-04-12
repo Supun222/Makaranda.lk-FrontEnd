@@ -6,6 +6,7 @@ import MembershipIcon from "../../Assets/Icons/Svgs/Membership";
 import LogOutIcon from "../../Assets/Icons/Svgs/LogOut";
 import ServiceIcon from "../../Assets/Icons/Svgs/Services";
 import { logout } from "../../Features/userSlice";
+import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 
 function SideBar() {
   const dispatch = useDispatch();
@@ -30,6 +31,19 @@ function SideBar() {
               <DashboardIcon />
               <p className="ml-1 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
                 Dashbord
+              </p>
+            </div>
+          </Link>
+        </li>
+        <li className="mt-2 flex flex-row items-center w-full">
+          <Link
+            to="/admin/booking"
+            className="flex flex-row justify-start bg-slate-50 focus:bg-slate-300 hover:bg-slate-200 rounded-sm w-full mt-3"
+          >
+            <div className="inline-flex justify-start items-center p-3 w-full">
+              <ChatIcon classList="w-5" />
+              <p className="ml-3 max-w-xs font-Lato text-primaryText font-semibold pl-1 pr-1">
+                Booking
               </p>
             </div>
           </Link>
