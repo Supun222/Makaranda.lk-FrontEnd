@@ -1,5 +1,5 @@
-// import { useEffect, useState } from "react";
-// import axios from "../../axios";
+import { useEffect, useState } from "react";
+import axios from "../../axios";
 import Totalservice from "../../Assets/Images/Dashboard/total_service.jpg";
 import StarIcon from "../../Assets/Icons/Svgs/Star";
 import PostIcon from "../../Assets/Icons/Svgs/Post";
@@ -7,22 +7,35 @@ import CategoryIcon from "../../Assets/Icons/Svgs/Category";
 import ChatIcon from "../../Assets/Icons/Svgs/Chat";
 
 function Reports() {
-  // const [totalServiceCount, setTotalServiceCount] = useState(0);
-  // const [totalVisitorsCount, setTotalVisitorsCount] = useState(0);
-  // const ReportDataBinding = () => {
-  //   axios.get("/user/total/services/location=all").then((response) => {
-  //     setTotalServiceCount(response.data.count);
-  //     // console.log(totalServiceCount);
-  //   });
-  //   axios.get("/user/total/visitors").then((response) => {
-  //     setTotalVisitorsCount(response.data.count);
-  //     // console.log(totalServiceCount);
-  //   });
-  // };
-  // // console.log(JSON.stringify(totalCount?.data.count));
-  // useEffect(() => {
-  //   ReportDataBinding();
-  // }, []);
+  const [totalServiceCount, setTotalServiceCount] = useState(0);
+  const [totalVisitorsCount, setTotalVisitorsCount] = useState(0);
+  const [Bookings, setBookingsCount] = useState(0);
+  const [Posts, setPostsCount] = useState(0);
+  const [Rating, setRatingCount] = useState(0);
+
+  const GetCounts = async () => {
+    try {
+      await axios
+        .get("/user/role=SERVICE_PROVIDER")
+        .then((res) => setTotalServiceCount(res.data.users));
+      await axios
+        .get("/user/role=VISITOR")
+        .then((res) => setTotalVisitorsCount(res.data.users));
+      await axios
+        .get("/booking/totall/booking/count")
+        .then((res) => setBookingsCount(res.data.booking));
+      await axios
+        .get("/post/totall/posts")
+        .then((res) => setPostsCount(res.data.Count));
+      setRatingCount(220);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    GetCounts();
+  }, []);
   return (
     <div className="flex flex-row items-center">
       <div className="flex flex-row justify-center p-3 items-center rounded-md bg-white w-2/5">
@@ -31,7 +44,7 @@ function Reports() {
             Total Service Providers
           </p>
           <p className="font-Lato text-2xl mt-2 font-semibold text-blue-500 text-center">
-            1200
+            {totalServiceCount}
           </p>
         </div>
         <img src={Totalservice} alt="totalservice" className="w-44 ml-2" />
@@ -44,7 +57,7 @@ function Reports() {
               Total Bookings
             </p>
             <p className="font-Lato text-lg text-yellow-400 font-semibold">
-              95
+              {Bookings}
             </p>
           </div>
         </div>
@@ -53,9 +66,11 @@ function Reports() {
           <CategoryIcon ClassList="w-12 bg-blue-400 p-2 rounded-md mr-3" />
           <div className="flex flex-col justify-start mr-2">
             <p className="font-Lato text-lg text-gray-600 font-semibold">
-              Total Categories
+              Total Visitors
             </p>
-            <p className="text-blue-500 font-Lato font-semibold text-lg">15</p>
+            <p className="text-blue-500 font-Lato font-semibold text-lg">
+              {totalVisitorsCount}
+            </p>
           </div>
         </div>
         <hr className="h-14 w-0.5 bg-gray-300 mr-2 ml-2" />
@@ -66,7 +81,7 @@ function Reports() {
               Total Posts
             </p>
             <p className="font-Lato text-lg text-purple-400 font-semibold">
-              357
+              {Posts}
             </p>
           </div>
         </div>
@@ -78,7 +93,7 @@ function Reports() {
               Total Ratings
             </p>
             <p className="font-Lato text-lg text-[#8fa3b3] font-semibold">
-              920
+              {Rating}
             </p>
           </div>
         </div>
