@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -6,19 +7,16 @@ import { setItemCard } from "../../Features/packageCard";
 
 // eslint-disable-next-line react/prop-types
 function FilterData({ AvailablePackages }) {
-  //   console.log(AvailablePackages);
-
-  // const [items, SetItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({
     Profile_id: null,
     Profile_name: null,
     Propic: null,
     Package_id: null,
     PackageName: null,
+    details: null,
     Price: null,
   });
   const dispatch = useDispatch();
-
   const setItems = () => {
     dispatch(
       setItemCard({
@@ -27,6 +25,7 @@ function FilterData({ AvailablePackages }) {
         profile_name: selectedItem.Profile_name,
         pro_pic: selectedItem.Propic,
         package_id: selectedItem.Package_id,
+        details: selectedItem.details,
         packagename: selectedItem.PackageName,
         price: selectedItem.Price,
       })
@@ -94,6 +93,7 @@ function FilterData({ AvailablePackages }) {
                     Profile_name: item.profile_name,
                     Propic: item.pro_pic,
                     Package_id: item.key_id,
+                    details: item.package_details,
                     PackageName: item.package_name,
                     Price: item.price,
                   })

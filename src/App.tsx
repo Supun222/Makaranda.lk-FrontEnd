@@ -23,6 +23,7 @@ import ForgotPassword from "./Pages/FogotPassword";
 import OTPInsert from "./Pages/FogotPassword/OTPInsert";
 import PasswordReset from "./Pages/FogotPassword/PassswordReset";
 import AdminBooking from "./Components/AdminBooking";
+import SendingPackages from "./Components/SendingPacks";
 
 function App() {
   return (
@@ -71,6 +72,10 @@ function App() {
             element={<FilterPackages />}
           />
         </Route>
+        <Route
+          path="/package_bundle/search/packages"
+          element={<SendingPackages />}
+        />
       </Routes>
     </Router>
   );

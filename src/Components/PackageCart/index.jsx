@@ -1,6 +1,7 @@
+/* eslint-disable radix */
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { selectItem } from "../../Features/packageCard";
 import Minus from "../../Assets/Icons/Svgs/Minus";
 
@@ -8,6 +9,7 @@ function PackageBucket() {
   const [cardItem, setCarItem] = useState([]);
   const packCard = useSelector(selectItem);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
@@ -31,9 +33,14 @@ function PackageBucket() {
     setTotalPrice(0);
     // eslint-disable-next-line array-callback-return
     cardItem.map((L) => {
-      setTotalPrice(totalPrice + L.price);
+      setTotalPrice(totalPrice + parseInt(L.price));
     });
   }, [cardItem]);
+
+  const SendingPacks = async () => {
+    localStorage.setItem("SearchedPacks", JSON.stringify(cardItem));
+    navigate("/package_bundle/search/packages");
+  };
 
   return (
     <div className="col-span-4 bg-white border border-gray-300 p-3 rounded-md">
@@ -116,13 +123,13 @@ function PackageBucket() {
             >
               Reset
             </button>
-            <Link
-              to="/admin"
-              params
+            <button
+              type="button"
               className="p-2 pt-1 pb-1 bg-primary rounded-md font-Lato font-medium text-white w-20 hover:opacity-80 text-center"
+              onClick={SendingPacks}
             >
               Send
-            </Link>
+            </button>
           </div>
         ) : (
           <div />

@@ -1,10 +1,15 @@
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import MainHeader from "../../Lib/Header";
 import Footer from "../../Lib/Footer";
 import MainCategory from "../../Components/MainCategory";
 import PackageBucket from "../../Components/PackageCart";
 
 function WeddingPackages() {
+  useEffect(() => {
+    // console.log(JSON.parse(localStorage.getItem("SearchedPacks")));
+  }, []);
+
   return (
     <div className="h-screen">
       <MainHeader />
