@@ -39,6 +39,7 @@ function PackageBucket() {
 
   const SendingPacks = async () => {
     localStorage.setItem("SearchedPacks", JSON.stringify(cardItem));
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     navigate("/package_bundle/search/packages");
   };
 

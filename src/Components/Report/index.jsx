@@ -27,7 +27,7 @@ function Reports() {
       await axios
         .get("/post/totall/posts")
         .then((res) => setPostsCount(res.data.Count));
-      setRatingCount(220);
+      setRatingCount(20);
     } catch (err) {
       console.log(err);
     }

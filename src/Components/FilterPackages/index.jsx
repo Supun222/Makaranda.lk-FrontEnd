@@ -6,7 +6,7 @@ import FilterData from "../FilterData";
 
 function FilterPackages() {
   const [minprice, setMinPrice] = useState(0);
-  const [maxprice, setMaxPrice] = useState(50000);
+  const [maxprice, setMaxPrice] = useState(70000);
   const [currentPrice, setCurrentPrice] = useState(maxprice);
   const { serviceType } = useParams();
   const [changeset, SetChangeSet] = useState(false);
@@ -56,7 +56,7 @@ function FilterPackages() {
       );
       // console.log(data);
     } else {
-      console.log(typeof data);
+      // console.log(typeof data);
     }
   }
 

@@ -66,7 +66,7 @@ function Posts() {
                         {post.username}
                       </h3>
                       <p className="text-gray-400 text-sm">
-                        {moment(post.publishDate).format("d MMMM yyyy")}
+                        {moment(post.publishDate).format("dd MMMM yyyy")}
                       </p>
                     </Link>
                   </div>
