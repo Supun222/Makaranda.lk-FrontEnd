@@ -266,7 +266,7 @@ function Packages() {
             </div>
             <div className="modal-body relative p-4">
               <form>
-                <div className="relative z-0 mb-6 w-full group p-2">
+                <div className="relative z-0 mb-4 w-full group p-2">
                   <input
                     type="date"
                     name="floating_email"
@@ -283,6 +283,22 @@ function Packages() {
                   >
                     Select a booking date
                   </label>
+                </div>
+                <div className="flex justify-center">
+                  <div className="w-full mt-2 mb-2">
+                    <label
+                      htmlFor="floating_email"
+                      className="font-Lato peer-focus:font-medium absolute text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Special note (This is optional)
+                    </label>
+                    <textarea
+                      className=" form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-500  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:ring-orange-600 focus:ring-offset-orange-600 focus:outline-none "
+                      id="details"
+                      rows="3"
+                      placeholder="-- Special Notes --"
+                    />
+                  </div>
                 </div>
               </form>
             </div>

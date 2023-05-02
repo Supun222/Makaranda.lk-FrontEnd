@@ -13,7 +13,11 @@ function AdminLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let response;
-  // toast.configure();
+
+  function redirect() {
+    navigate("/admin/dashboard");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -34,8 +38,13 @@ function AdminLogin() {
           loggedIn: true,
         })
       );
-      setTimeout(navigate("/admin/dashboard"), 3000);
-      toast.success("Successfully logged in");
+
+      if (response.data.role === "ADMIN") {
+        toast.success("Successfully logged in");
+        setTimeout(redirect(), 3000);
+      } else {
+        toast.error("Permission Denied");
+      }
     } catch (err) {
       // console.log(JSON.stringify(err.response?.data.errors));
       if (!err.response) {

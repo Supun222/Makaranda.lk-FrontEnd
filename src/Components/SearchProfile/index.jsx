@@ -47,7 +47,7 @@ function SearchProfile() {
           <SearchIcon />
         </button>
       </div>
-      <div className="bg-slate-100 w-full rounded-br-md rounded-bl-md">
+      <div className="bg-slate-100 w-full rounded-br-md rounded-bl-md z-50">
         <div className="flex flex-col justify-start pl-1 pr-1 z-50">
           {result && result.length > 0 ? (
             result.map((item) => (

@@ -72,16 +72,13 @@ function Dashboard() {
       "Dancing",
       "Photography",
       "Decoration",
-      "Wedding Hotels",
       "Wedding Suits",
-      "Bridal Dressing",
-      "Stationary",
-      "Music",
+      "Music Bands",
     ],
     datasets: [
       {
         label: "December",
-        data: [16, 15, 9, 7, 14, 10, 12, 14],
+        data: [2, 2, 1, 1, 1],
         fill: true,
       },
     ],
