@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
@@ -29,6 +30,7 @@ function Packages() {
   const [details, setDetails] = useState();
   const [profilename, setProfilename] = useState();
   const [profilePic, setProfilePic] = useState();
+  // const [today, setToday] = useState();
 
   const user = useSelector(selectUser);
   const { id } = useParams();
@@ -116,6 +118,30 @@ function Packages() {
     }
   };
 
+  const DisableDates = () => {
+    let today;
+    let dd;
+    let mm;
+    let yyyy;
+    today = new Date();
+
+    // if day is between 1 to 10
+    if (today.getDate() < 10) {
+      dd = `0${today.getDate() + 1}`;
+    } else {
+      dd = today.getDate() + 1;
+    }
+
+    // if month is between 1 to 10
+    if (today.getMonth() < 10) {
+      mm = `0${today.getMonth() + 1}`;
+    } else {
+      mm = today.getMonth() + 1;
+    }
+    yyyy = today.getFullYear();
+    console.log(`${yyyy}-${mm}-${dd}`);
+    return `${yyyy}-${mm}-${dd}`;
+  };
   return (
     <div>
       <button
@@ -269,11 +295,9 @@ function Packages() {
                 <div className="relative z-0 mb-4 w-full group p-2">
                   <input
                     type="date"
-                    name="floating_email"
-                    id="floating_email"
                     className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
                     value={bookDate}
+                    min={DisableDates()}
                     required
                     onChange={(e) => setBookDate(e.target.value)}
                   />

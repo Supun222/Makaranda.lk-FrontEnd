@@ -16,13 +16,21 @@ function Booking() {
   const [bookingID, setBookingID] = useState("");
   const [chanegSet, setChanegSet] = useState(false);
   const [bookingStatus, setBookingStatus] = useState();
+  const [token, setToken] = useState();
   const user = useSelector(selectUser);
 
   const getBookings = async () => {
+    if (user) {
+      setToken(user.token);
+    }
     try {
       console.log(bookingStatus);
       await axios
-        .get(`/booking/service_receiver=${profileID}`)
+        .get(`/booking/service_receiver=${profileID}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((res) => setBookings(res.data))
         .catch((err) => console.log(err));
     } catch (err) {
@@ -105,7 +113,7 @@ function Booking() {
                         {item.package_name}
                       </td>
                       <td className="text-center col-span-2 font-Lato text-base font-semibold text-gray-600">
-                        {moment(item.booked_date).format("dd MMMM yyyy")}
+                        {moment(item.booked_date).format("dddd MMMM yyyy")}
                       </td>
                       {item.status === "pending" ? (
                         <td className="text-center col-span-2 font-Lato text-base font-semibold text-yellow-400 capitalize">

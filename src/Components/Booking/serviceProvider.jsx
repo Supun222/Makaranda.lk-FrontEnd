@@ -18,12 +18,20 @@ function ServiceProviderBooking() {
   const [bookingID, setBookingID] = useState("");
   const [bookingStatus, setBookingStatus] = useState();
   const [chanegSet, setChanegSet] = useState(false);
+  const [token, setToken] = useState();
   const user = useSelector(selectUser);
 
   const getBookings = async () => {
+    if (user) {
+      setToken(user.token);
+    }
     try {
       await axios
-        .get(`/booking/service_provider=${profileID}`)
+        .get(`/booking/service_provider=${profileID}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((res) => setBookings(res.data))
         .catch((err) => console.log(err));
     } catch (err) {
