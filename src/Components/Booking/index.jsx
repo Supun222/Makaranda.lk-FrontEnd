@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
-import moment from "moment";
+import format from "date-fns/format";
 import { useSelector } from "react-redux";
 import axios from "../../axios";
 import DeleteIcon from "../../Assets/Icons/Svgs/Delete";
@@ -113,7 +113,7 @@ function Booking() {
                         {item.package_name}
                       </td>
                       <td className="text-center col-span-2 font-Lato text-base font-semibold text-gray-600">
-                        {moment(item.booked_date).format("dddd MMMM yyyy")}
+                        {format(item.booked_date, "MM/dd/yyyy")}
                       </td>
                       {item.status === "pending" ? (
                         <td className="text-center col-span-2 font-Lato text-base font-semibold text-yellow-400 capitalize">

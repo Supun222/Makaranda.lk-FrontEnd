@@ -5,11 +5,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { Calendar } from "react-date-range";
+import format from "date-fns/format";
 import axios from "../../axios";
 import PackageIcon from "../../Assets/Icons/Svgs/Package";
 import ProfilePic from "../../Assets/Images/Profile/profile.jpg";
 import { selectUser } from "../../Features/userSlice";
 import ResetIcon from "../../Assets/Icons/Svgs/Reset";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
 function Packages() {
   const [bookDate, setBookDate] = useState();
@@ -23,6 +27,7 @@ function Packages() {
     packagePrice: String,
   });
   const [oldPacks, setOldpacks] = useState([]);
+  const [openDate, setOpenDate] = useState(false);
 
   // edit packs
   const [name, setName] = useState();
@@ -30,7 +35,8 @@ function Packages() {
   const [details, setDetails] = useState();
   const [profilename, setProfilename] = useState();
   const [profilePic, setProfilePic] = useState();
-  // const [today, setToday] = useState();
+  const [today, setToday] = useState();
+  const [token, setToken] = useState("");
 
   const user = useSelector(selectUser);
   const { id } = useParams();
@@ -52,8 +58,10 @@ function Packages() {
     if (user) {
       setMadeBy(user.userID);
       setOwner(user.userID);
+      setToken(user.token);
     }
     loadPackages();
+    setToday(format(new Date(), "MM/dd/yyyy"));
   }, []);
 
   useEffect(() => {
@@ -75,7 +83,10 @@ function Packages() {
             package_name: packageName,
           }),
           {
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
             withCredentials: true,
           }
         )
@@ -118,30 +129,34 @@ function Packages() {
     }
   };
 
-  const DisableDates = () => {
-    let today;
-    let dd;
-    let mm;
-    let yyyy;
-    today = new Date();
-
-    // if day is between 1 to 10
-    if (today.getDate() < 10) {
-      dd = `0${today.getDate() + 1}`;
-    } else {
-      dd = today.getDate() + 1;
-    }
-
-    // if month is between 1 to 10
-    if (today.getMonth() < 10) {
-      mm = `0${today.getMonth() + 1}`;
-    } else {
-      mm = today.getMonth() + 1;
-    }
-    yyyy = today.getFullYear();
-    console.log(`${yyyy}-${mm}-${dd}`);
-    return `${yyyy}-${mm}-${dd}`;
+  const handleDate = (date) => {
+    setBookDate(format(date, "MM/dd/yyyy"));
   };
+
+  // const DisableDates = () => {
+  //   let today;
+  //   let dd;
+  //   let mm;
+  //   let yyyy;
+  //   today = new Date();
+
+  //   // if day is between 1 to 10
+  //   if (today.getDate() < 10) {
+  //     dd = `0${today.getDate() + 1}`;
+  //   } else {
+  //     dd = today.getDate() + 1;
+  //   }
+
+  //   // if month is between 1 to 10
+  //   if (today.getMonth() < 10) {
+  //     mm = `0${today.getMonth() + 1}`;
+  //   } else {
+  //     mm = today.getMonth() + 1;
+  //   }
+  //   yyyy = today.getFullYear();
+  //   console.log(`${yyyy}-${mm}-${dd}`);
+  //   return `${yyyy}-${mm}-${dd}`;
+  // };
   return (
     <div>
       <button
@@ -292,21 +307,30 @@ function Packages() {
             </div>
             <div className="modal-body relative p-4">
               <form>
-                <div className="relative z-0 mb-4 w-full group p-2">
-                  <input
-                    type="date"
-                    className="font-Lato block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    value={bookDate}
-                    min={DisableDates()}
-                    required
-                    onChange={(e) => setBookDate(e.target.value)}
-                  />
+                <div className="z-0 mb-4 w-full group p-2">
                   <label
                     htmlFor="floating_email"
-                    className="font-Lato peer-focus:font-medium absolute text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    className="font-Lato peer-focus:font-medium text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Select a booking date
                   </label>
+                  <input
+                    type="text"
+                    placeholder="Please select a date"
+                    className="font-Lato block py-2.5 px-0 w-full text-sm text-left text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    value={bookDate}
+                    readOnly
+                    onClick={() => setOpenDate(!openDate)}
+                  />
+                  {openDate ? (
+                    <Calendar
+                      date={new Date()}
+                      onChange={handleDate}
+                      minDate={new Date(today)}
+                    />
+                  ) : (
+                    <div />
+                  )}
                 </div>
                 <div className="flex justify-center">
                   <div className="w-full mt-2 mb-2">
