@@ -17,6 +17,8 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 
 function Packages() {
   const [bookDate, setBookDate] = useState();
+  const [bookedDates, setBookedDates] = useState([]);
+  const [disableDates, setDisableDates] = useState();
   const [packageName, setPackageName] = useState();
   const [madeBy, setMadeBy] = useState();
   const [Owner, setOwner] = useState();
@@ -53,16 +55,6 @@ function Packages() {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      setMadeBy(user.userID);
-      setOwner(user.userID);
-      setToken(user.token);
-    }
-    loadPackages();
-    setToday(format(new Date(), "MM/dd/yyyy"));
-  }, []);
 
   useEffect(() => {
     // console.log(Editablepackage);
@@ -133,30 +125,39 @@ function Packages() {
     setBookDate(format(date, "MM/dd/yyyy"));
   };
 
-  // const DisableDates = () => {
-  //   let today;
-  //   let dd;
-  //   let mm;
-  //   let yyyy;
-  //   today = new Date();
+  const DisableDates = async () => {
+    console.log("working");
+    try {
+      let temp = [];
+      await axios
+        .get(`/booking/dates/service_id=${id}`)
+        .then((res) => {
+          setBookedDates(res.data.dates);
+        })
+        .then(
+          bookedDates // eslint-disable-next-line array-callback-return
+            .map((item) => {
+              temp.push(
+                new Date(format(new Date(item.booked_date), "yyyy-MM-dd"))
+              );
+            })
+        )
+        .then(setDisableDates(temp));
+      console.log(disableDates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  //   // if day is between 1 to 10
-  //   if (today.getDate() < 10) {
-  //     dd = `0${today.getDate() + 1}`;
-  //   } else {
-  //     dd = today.getDate() + 1;
-  //   }
-
-  //   // if month is between 1 to 10
-  //   if (today.getMonth() < 10) {
-  //     mm = `0${today.getMonth() + 1}`;
-  //   } else {
-  //     mm = today.getMonth() + 1;
-  //   }
-  //   yyyy = today.getFullYear();
-  //   console.log(`${yyyy}-${mm}-${dd}`);
-  //   return `${yyyy}-${mm}-${dd}`;
-  // };
+  useEffect(() => {
+    if (user) {
+      setMadeBy(user.userID);
+      setOwner(user.userID);
+      setToken(user.token);
+    }
+    loadPackages();
+    setToday(format(new Date(), "MM/dd/yyyy"));
+  }, []);
   return (
     <div>
       <button
@@ -244,7 +245,10 @@ function Packages() {
                               className="p-2 pl-6 pr-6 bg-orange-600  text-white font-medium leading-tight uppercase rounded shadow-md  hover:bg-orange-700 hover:shadow-lg  focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                               data-bs-toggle="modal"
                               data-bs-target="#bookingForm"
-                              onClick={() => setPackageName(item.packageName)}
+                              onClick={() => {
+                                setPackageName(item.packageName);
+                                DisableDates();
+                              }}
                             >
                               Book
                             </button>
@@ -327,6 +331,7 @@ function Packages() {
                       date={new Date()}
                       onChange={handleDate}
                       minDate={new Date(today)}
+                      disabledDates={disableDates}
                     />
                   ) : (
                     <div />

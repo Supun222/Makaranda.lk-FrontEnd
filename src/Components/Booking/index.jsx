@@ -56,8 +56,6 @@ function Booking() {
       // setProfileID(users.userID);
       getBookings();
     }
-    console.log(user.userID);
-    console.log(user.userID);
   }, [chanegSet]);
 
   return (
